@@ -1,12 +1,10 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - sangeet2020
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - sangeet2020/speechbrain
+  - palla-lin/SoProPoetry
+  - sangeet2020/dialogue-processing
+  - nik1806/snlp_project
+  - sangeet2020/nnia-project
+  - sangeet2020/ws-20-21

@@ -2,96 +2,90 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Sangeet Sagar
     - name: Date of Birth
-      value: 14th March 1879
+      value: March 1997
     - name: Languages
-      value: English, German
+      value: English, Hindi, German (A1.1)
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: M.Sc.
+      institution: Universität des Saarlandes, Saarbrücken, Germany
+      year: April 2023
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Thesis- Noise Robust Speech Recognition for Search and Rescue Domain
+        - Major- Language Science and Technology
+    - title: B.Tech. 
+      institution: The LNM Institute of Information Technology, Jaipur, India
+      year: June 2019
       description:
-        - Description 1.
-        - Description 2.
+        - Thesis- <a href="https://drive.google.com/file/d/1h05aXzrrlsi4oudxBnm9v4LE9T2CFG40/view"> Analysis of Emotion Recognition using Speech Features</a>
+        - Major- Electronics and Communication Engineering
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Assistant
+      institution: Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI) GmbH, Saarbrücken, Germany
+      year: 2021-2023
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - As a part of MS thesis, built a noise robust automatic speech recognition system (STT) (German language) capable to work under hostile conditions like search and rescue missions. Also, train RNN based large language models for speech recognition.
+        - Trained open-source attention-based BiRNN punctuation restoration system+TruCasing for the German language. The system outperformed the baseline model- Vosk model by over 14% in recall metric.
+
+    - title: University research assistant
+      institution: Institute of Formal and Applied Linguistics, Charles University, Prague, Czechia
+      year: 2019-2020
       description:
-        - Description 1.
-        - Description 2.
+        - Principle tester of the live speech-language translation (SLT) system at live test sessions for the <a href="https://elitr.eu/overview/"> ELITR project</a>
+        - Training and testing (with in-domain/out-of-domain data) Czech punctuator system for live ASR.
+        - Perform domain adaptation for live ASR by fine-tuning LM by using speaker-specific data.
+        # - Set up pipelines for the <a href="https://github.com/ELITR/elitr-testset"> ELITR test set </a> and to get it ready for evaluation.
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: University research assistant
+      institution: Faculty of Information Technology, Brno University of Technology, Brno, Czechia
+      year: 2019
       description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+        - Developed a system for cross-lingual topic identification in low resource scenarios for Kinyarwanda, Zulu, Hindi and Reuters corpus.
+        - Achieved a remarkable weighted average precision score of 0.52 (on 10 different topics) on Kinyarwanda language by learning a simple linear transformation from this language to English language space.
+        # - Attained significant improvement of results for multilingual document classification on Reuters corpus compared to the existing framework.
+        # - Primary task- text feature extraction, training classifier, generating document embeddings, and learning transformation from unknown language to English space.
 
 - title: Open Source Projects
   type: time_table
   contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+    - title: English and Chinese poetry generation
+      year: 2022
+      description: English poetry generation and comparison (using PPL as evaluation metric) using LSTM, encoder-decoder based models, and transformer model (GPT). We conclude that fine-tuning GPT-2 model generated the highest quality poems i.e. with the least PPL score. Also trained a topic-prediction model to study how well a machine-generated poem is interpreted by a system trained on human-written poems. <a href="https://bit.ly/3t05QWE"> Report </a> | <a href="https://github.com/palla-lin/SoProPoetry/tree/sangeet"> Code </a>
+      
+    - title: Span extraction based slot-filling using attention and RNNs
+      year: 2022
+      description: Performed slot-filling (and intent recognition) using RNN on a multi-head attention mechanism. The main idea was to model the slot-filling task as a span extraction and to utilize available information about slot type for which value is to be provided. F1 score of 0.83 was achieved compared to 0.96 of the baseline model. <a href="https://bit.ly/3mbCRvf"> Report </a> | <a href="https://github.com/sangeet2020/dialogue-processing"> Code </a>
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
+    - title: Evaluating and defending against stealthy backdoor attacks
+      year: 2022
+      description: Presented defense strategies that counter backdoor attacks. These defenses significantly decrease the attack success rate (by 77%) on specific samples designed by the attacker. We do this by transforming each input such that the trigger words get replaced in the input, and the attack is not triggered. These defenses can be used without any significant runtime costs. <a href="https://bit.ly/3PLMC0t"> Report </a>
 
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    - title: Out-of-vocabulary (OOV) word estimation using subword representation
+      year: 2021
+      description: Achieved a better OOV rate and perplexity score than the baseline for three levels of granularity (char level, small, large vocab) with appropriate hyperparameter tuning. This was done by training RNN based language model to artificially generate corpus and compute OOV rate on varying sizes of the generated corpora. <a href="https://bit.ly/3GrMeA5"> Report </a> | <a href="https://github.com/nik1806/snlp_project"> Code </a>
 
-- title: Other Interests
+    - title: LSTM Based Parts-of-Speech Tagger
+      year: 2021
+      description: Utilized LSTM-based models with word embeddings that use sub-word information to perform POS tagging. It included LSTM models and Bi-LSTM models and their comparison with a bigram HMM-based parts-of-speech tagger that leverages Viterbi algorithm. <a href="https://bit.ly/3wUJbfx"> Report </a> | <a href="https://github.com/sangeet2020/ws-20-21/tree/main/computational-linguistics/LSTM-POS-tagger"> Code </a>
+
+    - title: Low Resource Languages for Emergent Incidents (LORELEI)
+      year: 2019
+      description: Performed topic identification based on multinomial sub-space models (for the DARPA funded Lorelei program) on low resource languages. Achieved a remarkable weighted average precision score of 0.5212 (on 10 different topics) on Kinyarwanda language.  <a href="https://drive.google.com/file/d/1Oo1F886HOdHA-JvK1v7gHovvyJAseeph/view"> PPT </a> | <a href="https://github.com/sangeet2020/Cross-lingual-topic-identification-in-low-resource-scenarios"> Code </a>
+
+    - title: <u>(Bachelors Thesis)</u> Analysis of Emotion Recognition using Speech Features
+      year: 2018
+      description: 7% improvisation over baseline on the classification of speech signals based on human emotions like angry, disgust, fear, happy, etc. Implemented on SAVEE and Emo-DB datasets using classifiers like GMM, CNN, MLPNN, we propose the use of feature extraction algorithms like S-Transform and image spectrogram of the speech signal to perform emotion recognition. <a href="https://drive.google.com/file/d/1h05aXzrrlsi4oudxBnm9v4LE9T2CFG40/view"> Report </a> | <a href="https://github.com/sangeet2020/Analysis-of-Emotion-Recognition-using-Speech"> Code </a>
+
+- title: Programming Skills
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Languages:</u> Python, Unix, MATLAB, R
+    - <u>Toolkits/Libraries:</u> PyTorch, <a href="https://speechbrain.github.io/"> SpeechBrain </a>,  GPT, Scikit-learn, Numpy, Huggingface, Matplotlib
+    - <u>Misc.:</u> GIT, Advanced Linux user, Extensive experience with cluster computing like SLURM
