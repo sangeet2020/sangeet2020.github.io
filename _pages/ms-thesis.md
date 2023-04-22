@@ -4,6 +4,8 @@ permalink: /ms-thesis/
 title: Noise Robust Speech Recognition for Search and Rescue Domain
 description: Masters Thesis Demo (April 2023)
 date: 2023-04-05
+thesis_pdf: MS_Thesis_Speech_Recognition_for_SAR_domain.pdf
+ppt_pdf: S.Sagar_Masters_Defense_2023_April.pdf
 
 authors:
   - name: Sangeet Sagar
@@ -29,7 +31,6 @@ toc:
 
 <style>
          /* Add CSS styles here */
-
          .column {
          display: inline-block;
          width: 30%;
@@ -80,12 +81,12 @@ toc:
          margin-top: 10px;
          }
          h4 {
-        margin-bottom: 25px;
+        margin-bottom: 5px;
         }
 
          
 </style>
-Here we demonstrate the enhanced utterances using our SepFormer enhancement model and transcripts were generated using fine-tuned Whisper ASR. 
+Here we demonstrate the enhanced utterances using our SepFormer enhancement model and transcripts were generated using fine-tuned Whisper ASR. All noisy utterances are at -5 dB SNR level.
 ### Emergency-vehicle-and-Siren noise
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -139,7 +140,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
             <img class="img-fluid rounded z-depth-1" 
             src="{{ site.baseurl }}/assets/img/spectrogram/Example_Emergency-vehicle-and-siren.svg" 
             data-zoomable 
-            style="max-width: 50%; height: auto;">
+            style="max-width: 70%; height: auto;">
         </div>
     </div>
 </div>
@@ -199,7 +200,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
             <img class="img-fluid rounded z-depth-1" 
             src="{{ site.baseurl }}/assets/img/spectrogram/Example_Engine.svg" 
             data-zoomable 
-            style="max-width: 50%; height: auto;">
+            style="max-width: 70%; height: auto;">
         </div>
     </div>
 </div>
@@ -259,7 +260,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
             <img class="img-fluid rounded z-depth-1" 
             src="{{ site.baseurl }}/assets/img/spectrogram/Example_Chopper.svg" 
             data-zoomable 
-            style="max-width: 50%; height: auto;">
+            style="max-width: 70%; height: auto;">
         </div>
     </div>
 </div>
@@ -319,7 +320,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
             <img class="img-fluid rounded z-depth-1" 
             src="{{ site.baseurl }}/assets/img/spectrogram/Example_Static-radio.svg" 
             data-zoomable 
-            style="max-width: 50%; height: auto;">
+            style="max-width: 70%; height: auto;">
         </div>
     </div>
 </div>
@@ -379,7 +380,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
             <img class="img-fluid rounded z-depth-1" 
             src="{{ site.baseurl }}/assets/img/spectrogram/Example_Breathing.svg" 
             data-zoomable 
-            style="max-width: 50%; height: auto;">
+            style="max-width: 70%; height: auto;">
         </div>
     </div>
 </div>

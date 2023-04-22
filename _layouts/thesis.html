@@ -63,7 +63,28 @@
     <div class="post distill">
 
       <d-title>
-        <h1>{{ page.title }}</h1>
+        <h1 class="post-title">
+          {{ page.title }}
+          {% if page.thesis_pdf %}
+            <a href="{{ page.thesis_pdf | prepend: 'assets/pdf/' | relative_url}}" 
+              target="_blank" rel="noopener noreferrer" class="pdf-icon top">
+              <i class="fas fa-file-pdf"></i>
+            </a>
+          {% endif %}
+          {% if page.ppt_pdf %}
+            <a href="{{ page.ppt_pdf | prepend: 'assets/pdf/' | relative_url}}" 
+              target="_blank" rel="noopener noreferrer" class="ppt-icon bottom">
+              <i class="fas fa-file-powerpoint"></i>
+            </a>
+          {% endif %}
+        </h1>
+        
+        <style>
+          .ppt-icon.bottom i {
+            color: rgb(255, 94, 0);
+          }
+        </style>
+        
         <p>{{ page.description }}</p>
       </d-title>
 

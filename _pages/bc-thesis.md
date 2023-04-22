@@ -1,10 +1,14 @@
 ---
-layout: page
+layout: thesis
 permalink: /bc-thesis/
-title: 
+title: Analysis of Emotion Recognition using Speech
 description: 
-nav: false
-nav_order: -1
+date: 2018-05-19
+thesis_pdf: Bachelors_Thesis-Sangeet_Sagar.pdf
+
+authors:
+  - name: Sangeet Sagar
+    affiliations:
+      name: The LNM Institute of Information Technology, Jaipur, India
+
 ---
-
-
