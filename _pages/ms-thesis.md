@@ -161,7 +161,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of clean audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Actual Transcript</b></center>
-            WENN DER AUFTRAG NICHT DURCHFÜHRBAR IST ABBRECHEN WIR HABEN JETZT EIN TRUPP AUF DEM WEG ZUR VERUNFALLTEN PERSON
+            DIE DROHNE MELDET ZWEI PERSONEN IM OBEREN CONTAINER DES BÜROKOMPLEXES KOMMEN
          </div>
     </div>
     <div class="col-sm mt-3 mt-md-0">
@@ -189,7 +189,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of enhanced audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Predicted Transcript</b></center>
-            WENN DER AUFTRAG DURCHFÜHRER IST ABRECHT WIR HABEN JETZT ÄH EIN TREPP AUF DEM WEG ZU VOR UNSERHALTEN PERSON
+            DIE DROHNE MELDET ZWEI PERSONEN IM OBEREN CONTAINER DES BÜROTKOMPLEX KOMMEN
          </div>
     </div>
 </div>
@@ -221,7 +221,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of clean audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Actual Transcript</b></center>
-            WENN DER AUFTRAG NICHT DURCHFÜHRBAR IST ABBRECHEN WIR HABEN JETZT EIN TRUPP AUF DEM WEG ZUR VERUNFALLTEN PERSON
+            FÜR SIE WENN SIE AUF DEN MONITOR GUCKEN LINKS ZU IHRER SEITE
          </div>
     </div>
     <div class="col-sm mt-3 mt-md-0">
@@ -249,7 +249,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of enhanced audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Predicted Transcript</b></center>
-            WENN DER AUFTRAG DURCHFÜHRER IST ABRECHT WIR HABEN JETZT ÄH EIN TREPP AUF DEM WEG ZU VOR UNSERHALTEN PERSON
+            FÜR SIE WENN SIE AUF DEM MONITOR GUCKEN LINKS ZU IHRER SEITEREN
          </div>
     </div>
 </div>
@@ -281,7 +281,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of clean audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Actual Transcript</b></center>
-            WENN DER AUFTRAG NICHT DURCHFÜHRBAR IST ABBRECHEN WIR HABEN JETZT EIN TRUPP AUF DEM WEG ZUR VERUNFALLTEN PERSON
+            ZEHN E L W ZWO EINS VON FLORIAN NULL G W D U K EINS KOMMEN
          </div>
     </div>
     <div class="col-sm mt-3 mt-md-0">
@@ -309,7 +309,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of enhanced audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Predicted Transcript</b></center>
-            WENN DER AUFTRAG DURCHFÜHRER IST ABRECHT WIR HABEN JETZT ÄH EIN TREPP AUF DEM WEG ZU VOR UNSERHALTEN PERSON
+            ZEHN E L W ZWO EINS VON FLORIAN DORTMUND NULL G W D U K EINS KOMMEN
          </div>
     </div>
 </div>
@@ -341,7 +341,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of clean audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Actual Transcript</b></center>
-            WENN DER AUFTRAG NICHT DURCHFÜHRBAR IST ABBRECHEN WIR HABEN JETZT EIN TRUPP AUF DEM WEG ZUR VERUNFALLTEN PERSON
+            FÜR EI SIE EINSATZAUFTRAG ERKUNDUNG DER HALLE INNEN MIT BODENROBOTISCHEN SYSTEMEN
          </div>
     </div>
     <div class="col-sm mt-3 mt-md-0">
@@ -369,7 +369,7 @@ Here we demonstrate the enhanced utterances using our SepFormer enhancement mode
         <div class="caption">Waveform of enhanced audio</div>
         <div class="textbox">
             <center><b style="text-transform: none;">Predicted Transcript</b></center>
-            WENN DER AUFTRAG DURCHFÜHRER IST ABRECHT WIR HABEN JETZT ÄH EIN TREPP AUF DEM WEG ZU VOR UNSERHALTEN PERSON
+                JA FÜR SIE EINSATZAUFTRAG ERKUNDUNG DER HALLE IN MIT BODENROBOTISCHEN SYSTEMEN
          </div>
     </div>
 </div>
