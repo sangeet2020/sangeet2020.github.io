@@ -6,6 +6,7 @@ description: Masters Thesis Demo (April 2023)
 date: 2023-04-05
 thesis_pdf: MS_Thesis_Speech_Recognition_for_SAR_domain.pdf
 ppt_pdf: S.Sagar_Masters_Defense_2023_April.pdf
+you_tube_link: https://youtu.be/gMQ5cfw21dk
 
 authors:
   - name: Sangeet Sagar
