@@ -3,7 +3,7 @@ layout: post
 title:  SLURM Tutorial
 date:   2022-11-12 16:40:16
 description: SLURM Commands- An Overview of Job Scheduling and Cluster Management System
-tags: formatting links
+# tags: formatting links
 categories: tutorial
 ---
 ## Introduction

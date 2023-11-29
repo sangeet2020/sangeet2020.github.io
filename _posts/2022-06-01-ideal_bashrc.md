@@ -3,7 +3,7 @@ layout: post
 title:  Ideal bashrc
 date:   2022-06-01 16:40:16
 description: An ideal bashrc is a myth.
-tags: formatting links
+# tags: formatting links
 categories: tech-post
 ---
 
