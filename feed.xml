@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://sangeet2020.github.io/feed.xml" rel="self" type="application/atom+xml"/><link href="https://sangeet2020.github.io/" rel="alternate" type="text/html" hreflang="en"/><updated>2024-01-09T17:01:04+01:00</updated><id>https://sangeet2020.github.io/feed.xml</id><title type="html">blank</title><subtitle></subtitle><entry><title type="html">icefall- Feature Extraction Pipeline</title><link href="https://sangeet2020.github.io/blog/2023/feature_extraction/" rel="alternate" type="text/html" title="icefall- Feature Extraction Pipeline"/><published>2023-08-26T18:40:16+02:00</published><updated>2023-08-26T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2023/feature_extraction</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2023/feature_extraction/"><![CDATA[<h2 id="feature-extraction">Feature extraction</h2> <p>Lets see what happens in <code class="language-plaintext highlighter-rouge">local/compute_fbank_commonvoice_splits.py</code></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>extractor <span class="o">=</span> KaldifeatFbank<span class="o">(</span>KaldifeatFbankConfig<span class="o">(</span><span class="nv">device</span><span class="o">=</span>device<span class="o">))</span>
+</code></pre></div></div> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="err">'config':</span><span class="w"> </span><span class="err">KaldifeatFbankConfig(</span><span class="w">
+                </span><span class="err">frame_opts=KaldifeatFrameOptions(</span><span class="w">
+                    </span><span class="err">sampling_rate=</span><span class="mi">16000</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">frame_shift=</span><span class="mf">0.01</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">frame_length=</span><span class="mf">0.025</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">dither=</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">preemph_coeff=</span><span class="mf">0.97</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">remove_dc_offset=True</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">window_type='povey'</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">round_to_power_of_two=True</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">blackman_coeff=</span><span class="mf">0.42</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">snip_edges=False</span><span class="w">
+                </span><span class="err">)</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">mel_opts=KaldifeatMelOptions(</span><span class="w">
+                    </span><span class="err">num_bins=</span><span class="mi">80</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">low_freq=</span><span class="mf">20.0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">high_freq=</span><span class="mf">-400.0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">vtln_low=</span><span class="mf">100.0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">vtln_high=</span><span class="mf">-500.0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">debug_mel=False</span><span class="p">,</span><span class="w"> 
+                    </span><span class="err">htk_mode=False</span><span class="w">
+                </span><span class="err">)</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">use_energy=False</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">energy_floor=</span><span class="mi">1e-10</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">raw_energy=True</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">htk_compat=False</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">use_log_fbank=True</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">use_power=True</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">device=device(type='cpu')</span><span class="p">,</span><span class="w"> 
+            </span><span class="err">chunk_size=</span><span class="mi">120000</span><span class="w">
+        </span><span class="err">)</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">'extractor':</span><span class="w"> </span><span class="err">Fbank()</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div> <p>This is used to compute features..</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s">"Computing features"</span><span class="p">)</span>
+<span class="n">cut_set</span> <span class="o">=</span> <span class="n">cut_set</span><span class="p">.</span><span class="nf">compute_and_store_features_batch</span><span class="p">(</span>
+           <span class="n">extractor</span><span class="o">=</span><span class="n">extractor</span><span class="p">,</span>
+           <span class="n">storage_path</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s">/commonvoice_feats_</span><span class="si">{</span><span class="n">subset</span><span class="si">}</span><span class="s">_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">"</span><span class="p">,</span>
+           <span class="n">num_workers</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">num_workers</span><span class="p">,</span>
+           <span class="n">batch_duration</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">batch_duration</span><span class="p">,</span>
+           <span class="n">storage_type</span><span class="o">=</span><span class="n">LilcomChunkyWriter</span><span class="p">,</span>
+           <span class="n">overwrite</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+       <span class="p">)</span>
+</code></pre></div></div> <p>The function <code class="language-plaintext highlighter-rouge">compute_and_store_features_batch</code> in code above is found in <code class="language-plaintext highlighter-rouge">lhotse/lhotse/cut/set.py(2102)</code> <br/></p> <p>Lets see what this <code class="language-plaintext highlighter-rouge">feat_manifest</code> is</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Features</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s">'kaldifeat-fbank'</span><span class="p">,</span> 
+    <span class="n">num_frames</span><span class="o">=</span><span class="mi">11057</span><span class="p">,</span> 
+    <span class="n">num_features</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> 
+    <span class="n">frame_shift</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> 
+    <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> 
+    <span class="n">start</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> 
+    <span class="n">duration</span><span class="o">=</span><span class="mf">110.570375</span><span class="p">,</span> 
+    <span class="n">storage_type</span><span class="o">=</span><span class="s">'lilcom_chunky'</span><span class="p">,</span> 	
+    <span class="n">storage_path</span><span class="o">=</span><span class="s">'data/fbank/commonvoice_train_split_1000/commonvoice_feats_train_0001.lca'</span><span class="p">,</span> 	
+    <span class="n">storage_key</span><span class="o">=</span><span class="s">'0,40733,41792,41952,41943,42282,41001,40090,39964,40992,41959,41793,41068,41138,41037,41167,41398,41026,41822,41264,40818,41864,37953,5273'</span><span class="p">,</span> 
+    <span class="n">recording_id</span><span class="o">=</span><span class="s">'None'</span><span class="p">,</span> 
+    <span class="n">channels</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</code></pre></div></div> <h2 id="cuts">Cuts</h2> <p>Contents of</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">gzip</span> <span class="nt">-cd</span> data/fbank/commonvoice_cuts_valid_raw.jsonl.gz | <span class="nb">head</span> <span class="nt">-n</span> 1
+</code></pre></div></div> <p>This is basically how cut looks like</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"sample_001-0"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"duration"</span><span class="p">:</span><span class="mf">110.1538125</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"channel"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"supervisions"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"sample_001"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"recording_id"</span><span class="p">:</span><span class="s2">"sample_001"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"start"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"duration"</span><span class="p">:</span><span class="mf">110.1525</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"channel"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"text"</span><span class="p">:</span><span class="s2">"&lt;unk&gt; SOME TRANSCRIPT GOES HERE ..."</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"language"</span><span class="p">:</span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"speaker"</span><span class="p">:</span><span class="s2">"0000000025-spk1_deu"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"custom"</span><span class="p">:{</span><span class="w">
+            </span><span class="nl">"utt_id"</span><span class="p">:</span><span class="s2">"recording_001_speaker_002"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"end"</span><span class="p">:</span><span class="mf">110.1525</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nl">"recording"</span><span class="p">:{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"sample_001"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sources"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"file"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"channels"</span><span class="p">:[</span><span class="w">
+               </span><span class="mi">0</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"source"</span><span class="p">:</span><span class="s2">"sample_001.wav"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"sampling_rate"</span><span class="p">:</span><span class="mi">16000</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"num_samples"</span><span class="p">:</span><span class="mi">1762461</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duration"</span><span class="p">:</span><span class="mf">110.1538125</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"channel_ids"</span><span class="p">:[</span><span class="w">
+         </span><span class="mi">0</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"MonoCut"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[This tutorial walks you through how feature extraction is done in icefall.]]></summary></entry><entry><title type="html">icefall- Audio read</title><link href="https://sangeet2020.github.io/blog/2023/icefall_audio_read/" rel="alternate" type="text/html" title="icefall- Audio read"/><published>2023-08-26T18:40:16+02:00</published><updated>2023-08-26T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2023/icefall_audio_read</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2023/icefall_audio_read/"><![CDATA[<h2 id="where-exactly-audio-read-and-feature-extraction-kaldifeat-fbank-is-done-in-lhotse">Where exactly audio read and feature extraction (KaldiFeat fbank) is done in Lhotse?</h2> <h3 id="audio-read">Audio read</h3> <p>The process begins with the creation of a UnsupervisedWaveformDataset object in Lhotse.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dataset <span class="o">=</span> UnsupervisedWaveformDataset<span class="o">(</span><span class="nv">collate</span><span class="o">=</span>collate<span class="o">)</span>
+</code></pre></div></div> <p>A DataLoader is then created from the dataset [see: <code class="language-plaintext highlighter-rouge">lhotse/cut/set.py</code>].</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dloader <span class="o">=</span> DataLoader<span class="o">(</span> dataset, <span class="nv">batch_size</span><span class="o">=</span>None, <span class="nv">sampler</span><span class="o">=</span>sampler, <span class="nv">num_workers</span><span class="o">=</span>num_workers <span class="o">)</span>
+</code></pre></div></div> <p>Inside <code class="language-plaintext highlighter-rouge">UnsupervisedWaveformDataset</code> class (<code class="language-plaintext highlighter-rouge">lhotse/lhotse/dataset/unsupervised.py</code>), <code class="language-plaintext highlighter-rouge">__getitem__</code> returns</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">c</span><span class="p">.</span><span class="nf">load_audio</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="s">"cuts"</span><span class="p">:</span> <span class="n">cuts</span><span class="p">,</span>
+<span class="s">"audio"</span><span class="p">:</span> <span class="n">audio</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>So when we iterate through the <code class="language-plaintext highlighter-rouge">dloader</code>, we get <code class="language-plaintext highlighter-rouge">cuts</code> and <code class="language-plaintext highlighter-rouge">audio</code> tensor -</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">dloader</span><span class="p">:</span>
+	<span class="n">cuts</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s">"cuts"</span><span class="p">]</span>
+	<span class="n">waves</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s">"audio"</span><span class="p">]</span>
+</code></pre></div></div> <p>To get <code class="language-plaintext highlighter-rouge">audio</code> tensor, we can simply do</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">cut</span> <span class="ow">in</span> <span class="n">cut_set</span><span class="p">:</span> 
+   <span class="nf">print</span><span class="p">(</span><span class="n">cut</span><span class="p">.</span><span class="nf">load_audio</span><span class="p">())</span>
+</code></pre></div></div> <p>Further to extract features in <code class="language-plaintext highlighter-rouge">set.py</code>,</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">features</span> <span class="o">=</span> <span class="n">extractor</span><span class="p">.</span><span class="nf">extract_batch</span><span class="p">(</span> <span class="n">waves</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">cuts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sampling_rate</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="n">wave_lens</span> <span class="p">)</span>
+</code></pre></div></div> <p>Extractor has been explained <a href="https://sangeet2020.github.io/blog/2023/feature_extraction/">here</a>. The function <code class="language-plaintext highlighter-rouge">extract_batch</code> is present in <code class="language-plaintext highlighter-rouge">lhotse/features/kaldifeat.py</code>. The actual Kaldifeat fbank feature extraction takes place in here (<code class="language-plaintext highlighter-rouge">lhotse/features/kaldifeat.py</code>) – this is because the extractor specifies the type of feature I.e. <code class="language-plaintext highlighter-rouge">Kaldifeat</code> fbank) -</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">kaldifeat</span> 
+<span class="n">self</span><span class="p">.</span><span class="n">extractor</span> <span class="o">=</span> <span class="n">kaldifeat</span><span class="p">.</span><span class="nc">Fbank</span><span class="p">(</span><span class="n">kaldifeat</span><span class="p">.</span><span class="n">FbankOptions</span><span class="p">.</span><span class="nf">from_dict</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="nf">to_dict</span><span class="p">())</span> <span class="p">)</span>
+<span class="c1"># Actual feature extraction. 
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">extractor</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">chunk_size</span><span class="p">)</span>
+</code></pre></div></div> <p>Once the Kaldifeat fbank features are computed, they are sent to further processing -</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">_save_worker</span><span class="p">(</span><span class="n">cuts</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span><span class="o">-</span> <span class="n">this</span> <span class="ow">is</span> <span class="n">done</span> <span class="ow">in</span> <span class="n">lhotse</span><span class="o">/</span><span class="n">cut</span><span class="o">/</span><span class="nb">set</span><span class="p">.</span><span class="n">py</span>			
+</code></pre></div></div> <p>No matter what start or end times are specified, the feature extraction process will compute features for the entire audio file. If the associated transcript for the audio file specifies a segment, such as from 5 seconds to 8 seconds within a 20-minute long audio, the computed features should be trimmed to this specific segment before being saved to the LCA-compressed file. Lets see how this is done in _save_worker(cuts, features)</p> <p>Inside the below function, the actual trimming is done (<code class="language-plaintext highlighter-rouge">set.py</code>)</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Features= lhotse.features.base.Features
+</span><span class="n">feat_manifest</span> <span class="o">=</span> <span class="nc">Features</span><span class="p">(</span> 
+      <span class="n">start</span><span class="o">=</span><span class="n">cut</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> 
+      <span class="n">duration</span><span class="o">=</span><span class="n">cut</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span> 
+      <span class="nb">type</span><span class="o">=</span><span class="n">extractor</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> 
+      <span class="n">num_frames</span><span class="o">=</span><span class="n">feat_mat</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
+      <span class="n">num_features</span><span class="o">=</span><span class="n">feat_mat</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+      <span class="n">frame_shift</span><span class="o">=</span><span class="n">frame_shift</span><span class="p">,</span> 
+      <span class="n">sampling_rate</span><span class="o">=</span><span class="n">cut</span><span class="p">.</span><span class="n">sampling_rate</span><span class="p">,</span> 
+      <span class="n">channels</span><span class="o">=</span><span class="n">cut</span><span class="p">.</span><span class="n">channel</span><span class="p">,</span> 
+      <span class="n">storage_type</span><span class="o">=</span><span class="n">feats_writer</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> 
+      <span class="n">storage_path</span><span class="o">=</span><span class="nf">str</span><span class="p">(</span><span class="n">feats_writer</span><span class="p">.</span><span class="n">storage_path</span><span class="p">),</span> 
+      <span class="n">storage_key</span><span class="o">=</span><span class="n">storage_key</span>
+<span class="p">)</span>
+</code></pre></div></div> <p>This actually writes the feature on the disk.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">storage_key</span> <span class="o">=</span> <span class="n">feats_writer</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">cut</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span> <span class="n">feat_mat</span><span class="p">)</span> 
+</code></pre></div></div> <p>Returns keys like: “14601,31,23,42”. The first number is the offset for the whole array, and the following numbers are relative offsets for each chunk. These offsets are relative to the previous chunk start.</p>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[This tutorial describes where does audio reading and feature extraction take place in icefall.]]></summary></entry><entry><title type="html">icefall- Data Prepration Pipeline</title><link href="https://sangeet2020.github.io/blog/2023/icefall_data_prepration/" rel="alternate" type="text/html" title="icefall- Data Prepration Pipeline"/><published>2023-08-26T18:40:16+02:00</published><updated>2023-08-26T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2023/icefall_data_prepration</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2023/icefall_data_prepration/"><![CDATA[<h2 id="data-prepration">Data Prepration</h2> <div class="row"> <div class="col-sm mt-3 mt-md-0" style="max-width: 900px;"> <figure> <picture> <img src="/assets/img/Icefall-%20LibriSpeech.drawio.svg" class="img-fluid rounded z-depth-1" width="auto" height="auto" title="example image" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> </div> <p>icefall relies on Lhotse library for data prepration. It makes audio data preparation for all recipes. Lets study and investigate whats happening at each stage.</p> <ol> <li><strong>First, manifests of the data are prepared</strong><br/> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lhotse prepare commonvoice <span class="nt">-j</span> 1 <span class="nv">$commonvoice_dir</span> data/manifests
+</code></pre></div> </div> <p>In <code class="language-plaintext highlighter-rouge">data/manifests</code> you can find files like</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> data/manifests/commonvoice_recordings_train.jsonl.gz 
+ data/manifests/commonvoice_supervisions_train.jsonl.gz
+</code></pre></div> </div> <p>Let’s take a look at the contents of these files:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">gzip</span> <span class="nt">-cd</span> data/manifests/commonvoice_recordings_train.jsonl.gz | <span class="nb">head</span> <span class="nt">-n</span> 1
+</code></pre></div> </div> <p>Sample content:</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"sample_09901.wav"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"sources"</span><span class="p">:[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"type"</span><span class="p">:</span><span class="s2">"file"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"channels"</span><span class="p">:[</span><span class="w">
+             </span><span class="mi">0</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nl">"source"</span><span class="p">:</span><span class="s2">"/home/audio/sample_09901.wav"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="nl">"sampling_rate"</span><span class="p">:</span><span class="mi">16000</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"num_samples"</span><span class="p">:</span><span class="mi">1769149</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"duration"</span><span class="p">:</span><span class="mf">110.5718125</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"channel_ids"</span><span class="p">:[</span><span class="w">
+     </span><span class="mi">0</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div> </div> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">gzip</span> <span class="nt">-cd</span> data/manifests/commonvoice_supervisions_train.jsonl.gz | <span class="nb">head</span> <span class="nt">-n</span> 1
+</code></pre></div> </div> <p>Sample content:</p> <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"id"</span><span class="p">:</span><span class="s2">"sample_09901.wav"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"recording_id"</span><span class="p">:</span><span class="s2">"sample_09901.wav"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"start"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"duration"</span><span class="p">:</span><span class="mf">110.5704</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"channel"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"text"</span><span class="p">:</span><span class="s2">"~MUSIC i like spongebob.. so does my neighbour"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"language"</span><span class="p">:</span><span class="s2">"de"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"speaker"</span><span class="p">:</span><span class="s2">"0000000013-spk1_deu"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"custom"</span><span class="p">:{</span><span class="w">
+     </span><span class="nl">"utt_id"</span><span class="p">:</span><span class="s2">"rec-037864_deu"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"end"</span><span class="p">:</span><span class="mf">110.5704</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div> </div> <p><br/></p> </li> <li> <p><strong>Pre-processing of Manifests</strong><br/> The next step is the pre-processing of these manifests using:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./local/preprocess_commonvoice.py
+</code></pre></div> </div> <p>This involves cleaning and normalizing transcripts for train/test/valid data. It inputs</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> data/manifests/commonvoice_recordings_train.jsonl.gz
+ data/manifests/commonvoice_supervisions_train.jsonl.gz
+</code></pre></div> </div> <p>The processed cuts are stored in <code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_cuts_train_raw.jsonl.gz</code>. <br/></p> </li> <li><strong>Further, this cut is split into 1000 pieces (<code class="language-plaintext highlighter-rouge">num_splits</code>)</strong><br/> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">split_dir</span><span class="o">=</span>data/fbank/commonvoice_train_split_100/
+ lhotse <span class="nb">split </span>1000 <span class="nt">-i</span> 1 ./data/fbank/commonvoice_cuts_train_raw.jsonl.gz <span class="nv">$split_dir</span>
+</code></pre></div> </div> <p>However, this split is only done for the train dataset and not for other sets. These cuts are stored in:</p> <ul> <li><code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_train_split_1000/commonvoice_cuts_train_raw.1.jsonl.gz</code></li> <li><code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_train_split_1000/commonvoice_cuts_train_raw.2.jsonl.gz</code></li> <li><code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_train_split_1000/commonvoice_cuts_train_raw.3.jsonl.gz</code></li> <li>… and so on. <br/></li> </ul> </li> <li><strong>Each of these cuts is then processed, and fbank features are computed</strong><br/> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./local/compute_fbank_commonvoice_splits.py <span class="nt">--num-workers</span> <span class="nv">$nj</span> <span class="nt">--batch-duration</span> 200 <span class="nt">--start</span> 0 <span class="nt">--num-splits</span> <span class="nv">$num_splits</span>
+</code></pre></div> </div> <p>Here is how the processing takes place:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Processing 1/1000
+ Loading data/fbank/commonvoice_train_split_1000/commonvoice_cuts_train_raw.1.jsonl.gz
+ Filtering out super short utts
+ Removed 0 cuts from 1000 cuts. 0.000% data is removed.
+ Doing speed perturb <span class="o">(</span>train <span class="nb">set </span>only<span class="o">)</span>
+ Splitting cuts into smaller chunks.
+ Computing features
+ Computing features <span class="k">in </span>batches
+ Saving to data/fbank/commonvoice_train_split_1000/commonvoice_cuts_train.1.jsonl.
+</code></pre></div> </div> <p>At the end of each processing step, two files are created in <code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_train_split_1000/</code>:</p> <ul> <li><code class="language-plaintext highlighter-rouge">commonvoice_feats_train_1.lca</code>: fbank features stored in compressed format (lilcom_chunky: *.lca)</li> <li><code class="language-plaintext highlighter-rouge">commonvoice_cuts_train.1.jsonl.gz</code>: new cut stored after filtering short sentences, doing speed perturbation, etc. For the next steps, this cut shall be used and not the <em>raw</em> one. <br/></li> </ul> </li> <li> <p><strong>Feature Combination</strong><br/> Next, the features are combined for the train set using:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> lhotse combine <span class="nv">$pieces</span> data/fbank/commonvoice_cuts_train.jsonl.gz
+</code></pre></div> </div> <p>This takes all the new cuts and combines them into one file <code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_cuts_train.jsonl.gz</code>. Further, it shuffles them. <br/></p> </li> <li><strong>Transcript Creation and BPE Models</strong> <br/> Finally, the train transcripts are created from <code class="language-plaintext highlighter-rouge">data/fbank/commonvoice_cuts_train.jsonl.gz</code>, and BPE models are created.</li> </ol>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[This tutorial explains how data prepration is performed in icefall recipes.]]></summary></entry><entry><title type="html">Install K2-FSA/IceFall/Lhotse</title><link href="https://sangeet2020.github.io/blog/2023/install_k2_fsa/" rel="alternate" type="text/html" title="Install K2-FSA/IceFall/Lhotse"/><published>2023-08-11T18:40:16+02:00</published><updated>2023-08-11T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2023/install_k2_fsa</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2023/install_k2_fsa/"><![CDATA[<h2 id="k2-fsa-installation">K2-FSA Installation</h2> <p>It is recommended to install K2-FSA in separate virtual environments. We use the recommended pre-compiled wheels.</p> <ul> <li>K2-CPU Installation (Torch version 2.0.1) <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip <span class="nb">install </span><span class="nv">torch</span><span class="o">==</span>2.0.1+cpu <span class="nt">-f</span> https://download.pytorch.org/whl/torch_stable.html
+  pip <span class="nb">install </span><span class="nv">k2</span><span class="o">==</span>1.24.3.dev20230718+cpu.torch2.0.1 <span class="nt">-f</span> https://k2-fsa.github.io/k2/cpu.html
+</code></pre></div> </div> </li> <li>K2-GPU Installation (CUDA version 11.7) <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  pip <span class="nb">install </span><span class="nv">torch</span><span class="o">==</span>2.0.1+cu117 <span class="nt">-f</span> https://download.pytorch.org/whl/torch_stable.html
+  pip <span class="nb">install </span><span class="nv">k2</span><span class="o">==</span>1.24.3.dev20230718+cuda11.7.torch2.0.1 <span class="nt">-f</span> https://k2-fsa.github.io/k2/cuda.html
+</code></pre></div> </div> </li> </ul> <h2 id="icefall-installation">IceFall Installation</h2> <p>Installation source: <a href="https://icefall.readthedocs.io/en/latest/installation/index.html#install-cuda-toolkit-and-cudnn">IceFall Documentation</a></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/k2-fsa/icefall
+<span class="nb">cd </span>icefall
+pip <span class="nb">install</span> <span class="nt">-r</span> ./requirements.txt
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span><span class="nv">$PWD</span>:<span class="nv">$PYTHONPATH</span>
+</code></pre></div></div> <h2 id="lhotse-installation">Lhotse Installation</h2> <p>Installation source: <a href="https://lhotse.readthedocs.io/en/latest/getting-started.html#installation">Lhotse Documentation</a></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/lhotse-speech/lhotse.git
+pip <span class="nb">install</span> <span class="nt">-e</span> <span class="s1">'.[dev]'</span>
+pre-commit <span class="nb">install
+</span>pip <span class="nb">install </span>lhotse[kaldi]
+</code></pre></div></div> <h2 id="installing-cuda-117-and-cudnn-89">Installing CUDA (11.7) and cuDNN (8.9)</h2> <p>Installation source: <a href="https://k2-fsa.github.io/k2/installation/cuda-cudnn.html#cuda-11-7">Icefall Documentation</a></p> <ul> <li>Installing CUDA <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c">## Choose installation dir</span>
+  <span class="nv">INSTALL_PATH</span><span class="o">=</span><span class="s2">"/home/sagar/bin/cuda/11.7.1/"</span>
+  <span class="nb">mkdir</span> <span class="nt">-p</span> <span class="k">${</span><span class="nv">INSTALL_PATH</span><span class="k">}</span>
+
+  <span class="c">## Download cuda</span>
+  wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda_11.7.1_515.65.01_linux.run
+
+  <span class="nb">chmod</span> +x cuda_11.7.1_515.65.01_linux.run
+
+  ./cuda_11.7.1_515.65.01_linux.run <span class="se">\</span>
+  <span class="nt">--silent</span> <span class="se">\</span>
+  <span class="nt">--toolkit</span> <span class="se">\</span>
+  <span class="nt">--installpath</span><span class="o">=</span><span class="k">${</span><span class="nv">INSTALL_PATH</span><span class="k">}</span> <span class="se">\</span>
+  <span class="nt">--no-opengl-libs</span> <span class="se">\</span>
+  <span class="nt">--no-drm</span> <span class="se">\</span>
+  <span class="nt">--no-man-page</span>
+</code></pre></div> </div> </li> <li> <p>Installing cuDNN</p> <p>Check other available versions here: <a href="https://developer.nvidia.com/rdp/cudnn-archive">cuDNN Archive by Nvidia</a></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  wget https://huggingface.co/csukuangfj/cudnn/resolve/main/cudnn-linux-x86_64-8.9.1.23_cuda11-archive.tar.xz
+
+  <span class="nb">tar </span>xvf cudnn-linux-x86_64-8.9.1.23_cuda11-archive.tar.xz <span class="nt">--strip-components</span><span class="o">=</span>1 <span class="nt">-C</span> <span class="k">${</span><span class="nv">INSTALL_PATH</span><span class="k">}</span>
+</code></pre></div> </div> </li> <li>Set environment variables <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">CUDA_HOME</span><span class="o">=</span><span class="k">${</span><span class="nv">INSTALL_PATH</span><span class="k">}</span>
+  <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/bin:<span class="nv">$PATH</span>
+  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/lib64:<span class="nv">$LD_LIBRARY_PATH</span>
+  <span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+
+  <span class="nb">export </span><span class="nv">CUDA_TOOLKIT_ROOT_DIR</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+  <span class="nb">export </span><span class="nv">CUDA_TOOLKIT_ROOT</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+  <span class="nb">export </span><span class="nv">CUDA_BIN_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+  <span class="nb">export </span><span class="nv">CUDA_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+  <span class="nb">export </span><span class="nv">CUDA_INC_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/targets/x86_64-linux
+  <span class="nb">export </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="nt">-I</span><span class="nv">$CUDA_HOME</span>/targets/x86_64-linux/include:<span class="nv">$CFLAGS</span>
+</code></pre></div> </div> </li> <li>Verify installation <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  which nvcc
+
+  nvcc <span class="nt">--version</span>
+</code></pre></div> </div> </li> </ul>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[Learn how to install K2-FSA, IceFall, and Lhotse on Linux/Ubuntu.]]></summary></entry><entry><title type="html">SpeechBrain SepFormer recipe</title><link href="https://sangeet2020.github.io/blog/2022/sb-recipe-sepformer/" rel="alternate" type="text/html" title="SpeechBrain SepFormer recipe"/><published>2022-12-19T17:40:16+01:00</published><updated>2022-12-19T17:40:16+01:00</updated><id>https://sangeet2020.github.io/blog/2022/sb-recipe-sepformer</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2022/sb-recipe-sepformer/"><![CDATA[<div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/SepFormer.drawio.svg" class="img-fluid rounded z-depth-1" width="auto" height="auto" title="example image" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"/> </picture> </figure> </div> </div>]]></content><author><name></name></author><category term="tech-post"/><summary type="html"><![CDATA[SpeechBrain Speech Enhancement Tutorial with SepFormer Model]]></summary></entry><entry><title type="html">Installation without sudo</title><link href="https://sangeet2020.github.io/blog/2022/install_without_sudo/" rel="alternate" type="text/html" title="Installation without sudo"/><published>2022-11-12T17:40:16+01:00</published><updated>2022-11-12T17:40:16+01:00</updated><id>https://sangeet2020.github.io/blog/2022/install_without_sudo</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2022/install_without_sudo/"><![CDATA[<h2 id="installing-python-from-scratch-without-sudo">Installing Python from Scratch Without sudo</h2> <p>In this tutorial, we’ll guide you through the process of installing Python from scratch without using <code class="language-plaintext highlighter-rouge">sudo</code>. This approach allows you to have a self-contained Python installation in your user directory, giving you more control over your Python environment.</p> <ul> <li>Step 1: Download Python <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">VERSION</span><span class="o">=</span>3.10.12
+  <span class="nv">USERNAME</span><span class="o">=</span>spongebob
+  wget https://www.python.org/ftp/python/<span class="nv">$VERSION</span>/Python-<span class="nv">$VERSION</span>.tgz
+  <span class="nb">tar</span> <span class="nt">-xf</span> Python-<span class="nv">$VERSION</span>.tgz
+</code></pre></div> </div> </li> <li>Step 2: Configure and Install <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">cd </span>Python-<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span>
+  <span class="nb">mkdir</span> /home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span>/
+  ./configure <span class="nt">--prefix</span><span class="o">=</span>/home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span>/ <span class="nt">--enable-optimizations</span>
+  make <span class="nt">-j</span> 12
+  make <span class="nt">-j</span> 12 <span class="nb">install</span>
+</code></pre></div> </div> </li> <li>Step 3: Create Symbolic Links <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">ln</span> <span class="nt">-s</span> /home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/3.10.12/bin/python3.10 /home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/3.10.12/bin/python
+  <span class="nb">ln</span> <span class="nt">-s</span> /home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/3.10.12/bin/pip3 /home/<span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span>/.localpython/3.10.12/bin/pip
+</code></pre></div> </div> </li> <li>Step 4: Update PATH in bashrc Add the following line to your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> or <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> file to ensure your new Python installation is in your PATH: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/</span><span class="k">${</span><span class="nv">USERNAME</span><span class="k">}</span><span class="s2">/.localpython/3.10.12/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+</code></pre></div> </div> </li> </ul> <h2 id="installing-python-using-miniconda">Installing Python using Miniconda</h2> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">## this installs the version 3.11.4</span>
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh <span class="nt">-b</span> <span class="nt">-p</span> miniconda
+
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/mnt/users/sagarst/bin/miniconda/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/mnt/users/sagarst/bin/miniconda/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+</code></pre></div></div> <h2 id="create-the-virtual-environment">Create the Virtual Environment</h2> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> venv sb_env
+<span class="nb">source</span> /netscratch/sagar/thesis/sb_env/bin/activate
+pip3 <span class="nb">install </span><span class="nv">torch</span><span class="o">==</span>1.11.0 torchvision torchaudio <span class="nt">--extra-index-url</span> https://download.pytorch.org/whl/cu113
+</code></pre></div></div> <h2 id="installation-of-other-packages-without-sudo">Installation of other packages without sudo</h2> <ol> <li> <p>Let’s suppose you want to install <code class="language-plaintext highlighter-rouge">tree</code> package without sudo.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> wget http://mama.indstate.edu/users/ice/tree/src/tree-2.0.2.tgz
+ <span class="nb">tar</span> <span class="nt">-xzvf</span> tree-2.0.2.tgz
+ ./configure <span class="nt">--prefix</span><span class="o">=</span>/home/sagar/.local/
+ make <span class="nv">PREFIX</span><span class="o">=</span>/home/sagar/.local/ <span class="nv">MANDIR</span><span class="o">=</span>/home/sagar/.local/share/ <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="nb">chmod</span> <span class="nt">-v</span> 644 /home/sagar/.local/share/
+</code></pre></div> </div> </li> <li> <p>Let’s suppose you want to install <code class="language-plaintext highlighter-rouge">sox</code> package without sudo. Here <code class="language-plaintext highlighter-rouge">/netscratch/sagar/usr/share/sox</code> is the destination dir.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> wget https://nav.dl.sourceforge.net/project/sox/sox/14.4.2/sox-14.4.2.tar.bz2
+ <span class="nb">tar</span> <span class="nt">-xf</span> sox-14.4.2.tar.bz2
+ ./configure <span class="nt">--prefix</span><span class="o">=</span>/netscratch/sagar/usr/share/sox
+ make <span class="nt">-s</span> <span class="o">&amp;&amp;</span> make <span class="nb">install</span>
+</code></pre></div> </div> </li> </ol>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[Install linux/ubuntu packages without admin rights]]></summary></entry><entry><title type="html">SLURM Tutorial</title><link href="https://sangeet2020.github.io/blog/2022/slurm_tutorial/" rel="alternate" type="text/html" title="SLURM Tutorial"/><published>2022-11-12T17:40:16+01:00</published><updated>2022-11-12T17:40:16+01:00</updated><id>https://sangeet2020.github.io/blog/2022/slurm_tutorial</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2022/slurm_tutorial/"><![CDATA[<h2 id="introduction">Introduction</h2> <p>SLURM is an open-source cluster management and job scheduling system for Linux Clusters. Main function</p> <ul> <li>Allocates access to resources (computer nodes)</li> <li>Provides a framework to run and monitor jobs on allocated nodes</li> <li>Manage a job queue for competing resource requests.</li> </ul> <h2 id="overview-of-slurm-commands">Overview of SLURM commands</h2> <ul> <li><code class="language-plaintext highlighter-rouge">sinfo</code> : display compute partition and node information</li> <li><code class="language-plaintext highlighter-rouge">sbatch</code> : submit a job script for remote execution</li> <li><code class="language-plaintext highlighter-rouge">srun</code> : launch parallel tasks (job steps) for MPI jobs</li> <li><code class="language-plaintext highlighter-rouge">salloc</code> : allocate resources for an interactive job</li> <li><code class="language-plaintext highlighter-rouge">squeue</code> : display status for jobs and job steps</li> <li><code class="language-plaintext highlighter-rouge">sprio</code> : display job priority information</li> <li><code class="language-plaintext highlighter-rouge">scancel</code> : cancel pending or running jobs</li> <li><code class="language-plaintext highlighter-rouge">sstat</code> : display status information for running jobs</li> <li><code class="language-plaintext highlighter-rouge">sacct</code> : display accounting information for past jobs</li> <li><code class="language-plaintext highlighter-rouge">seff</code> : display job efficiency information for past jobs</li> <li><code class="language-plaintext highlighter-rouge">scontrol</code> : display or modify slurm configuration and state</li> </ul> <h2 id="codes-for-common-node-state">Codes for common node state</h2> <ul> <li><code class="language-plaintext highlighter-rouge">Draining</code> : the node is currently executing a job, but will not be allocated additional jobs</li> <li><code class="language-plaintext highlighter-rouge">Maint</code>: The node is currently in a reservation with a flag value of maintenance</li> <li><code class="language-plaintext highlighter-rouge">Mixed</code>: The node has some of its CPUs allocated with others are IDLE</li> <li><code class="language-plaintext highlighter-rouge">Reserved</code>: The node is in advanced and not generally available.</li> </ul> <p><code class="language-plaintext highlighter-rouge">myaccount</code> : to know your default project account</p> <h2 id="view-the-status-of-all-running-jobs">View the status of all running jobs</h2> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>squeue -u sagar -o "%.6i %9P %15j %.6u %.10T %.10M %.10l %.6D %10R %s %.10g"
+</code></pre></div></div> <h2 id="interactive-job">Interactive job</h2> <p>This basically helps you run your script interactively by allocating a terminal/console for you and you get to see all verbose generated by your script.</p> <h3 id="interactive-cpu--job">Interactive CPU job</h3> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun --job-name "InteractiveJob" --cpus-per-task 8 --ptybash
+</code></pre></div></div> <p>here</p> <ul> <li><code class="language-plaintext highlighter-rouge">InteractiveJob</code> : name of your job. (when you run <code class="language-plaintext highlighter-rouge">squeue -u sagar</code> you can identify your job with that name)</li> <li><code class="language-plaintext highlighter-rouge">--cpus-per-task 8</code> : you need 8 cores for this job (16 threads)</li> <li><code class="language-plaintext highlighter-rouge">--ptybash</code> : this will open a bash terminal for you and let YOU run the job (that’s why we call it an interactive job, since you can interact with the terminal, and control the arguments for your script)</li> </ul> <p>You can also specify other parameters like</p> <ul> <li><code class="language-plaintext highlighter-rouge">--mem-per-cpu=16gb</code> : each core to have 16 Gb RAM</li> <li><code class="language-plaintext highlighter-rouge">--time=30:00:00</code> : Run this task no longer than 30 hrs.</li> </ul> <h3 id="interactive-gpu-job">Interactive GPU job</h3> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>srun \
+-n 1 \
+--container-mounts=/netscratch/$USER:/netscratch/$USER,/ds:/ds:ro,"`pwd`":"`pwd`",/home/$USER/:/home/$USER/ \
+--container-image=/netscratch/sagar/docker_images/images/10.2.sqsh \
+--container-workdir="`pwd`" \
+--pty \
+--cpus-per-gpu=8 \
+--gpus-per-task=1 \
+--partition=RTXA6000,A100,V100-32GB,RTX3090 \
+/bin/bash
+</code></pre></div></div> <p>change these parameters as per your requirement</p> <ul> <li><code class="language-plaintext highlighter-rouge">container-image</code></li> <li><code class="language-plaintext highlighter-rouge">cpus-per-gpu</code></li> <li><code class="language-plaintext highlighter-rouge">gpus-per-task</code></li> <li><code class="language-plaintext highlighter-rouge">partition</code></li> </ul> <h2 id="job-submission-gpu">Job submission (GPU)</h2> <h3 id="choice-1--short-way">Choice 1- short way</h3> <p>Create a script with a name, let’s say <code class="language-plaintext highlighter-rouge">sbatch_train.sh</code></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c">#SBATCH --nodes=1               # Number of nodes or servers. See: http://koeln.kl.dfki.de:3000/d/slurm-resources/resources?orgId=1&amp;refresh=15s</span>
+<span class="c">#SBATCH --ntasks-per-node=1     # Number of task in each node, we want 1 </span>
+<span class="c">#SBATCH --cpus-per-task=4       # We want 4 cores for this job.</span>
+<span class="c">#SBATCH --mem-per-cpu=16gb      # each core to have 16 Gb RAM</span>
+<span class="c">#SBATCH --gres=gpu:4            # We want 4 GPUs in each node for this job.</span>
+<span class="c">#SBATCH --time=30:00:00         # Run this task no longer that 30 hrs.</span>
+<span class="c">#SBATCH --partition=RTXA6000,V100-32GB,RTX3090  # Run this only in these mentioned GPUs. If you dont have any choice over GPUs, remove this parameter.</span>
+<span class="c">#SBATCH --job-name=mimic_loss</span>
+<span class="c">#SBATCH --output=mimic_loss_%A.logs</span>
+
+srun <span class="nt">-K</span> <span class="se">\</span>
+<span class="nt">--container-mounts</span><span class="o">=</span>/netscratch/<span class="nv">$USER</span>:/netscratch/<span class="nv">$USER</span>,/ds:/ds:ro,<span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span>:<span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span>,/home/<span class="nv">$USER</span>/:/home/<span class="nv">$USER</span>/ <span class="se">\</span>
+<span class="nt">--container-image</span><span class="o">=</span>/netscratch/sagar/docker_images/images/10.2.sqsh <span class="se">\</span>
+<span class="nt">--container-workdir</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span> <span class="se">\</span>
+python train.py <span class="nt">--output_dir</span> output
+</code></pre></div></div> <p>where <code class="language-plaintext highlighter-rouge">--container-image</code> should point to your docker-image that has all packages installed like a python version of your choice, PyTorch or TensorFlow.<br/> <strong>Submit your job using</strong></p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbatch sbatch_train.sh
+</code></pre></div></div> <h3 id="choice-2--long-way">Choice 2- long way</h3> <p>I personally prefer using a docker image with minimal installation i.e. supported with just <code class="language-plaintext highlighter-rouge">cuda</code> and <code class="language-plaintext highlighter-rouge">cudnn</code> version of my choice. I rather use python, pytorch, tensorflow etc. (all required libraries/packages) installed locally in my conda virtual env or python virtual env. (You can also download the docker image of your choice: <code class="language-plaintext highlighter-rouge">https://hub.docker.com/r/nvidia/cuda/tags</code>)</p> <ol> <li>Create a script with a name, let’s say <code class="language-plaintext highlighter-rouge">sbatch_train.sh</code></li> </ol> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c">#SBATCH --nodes=1               # Number of nodes or servers. See: http://koeln.kl.dfki.de:3000/d/slurm-resources/resources?orgId=1&amp;refresh=15s</span>
+<span class="c">#SBATCH --ntasks-per-node=1     # Number of task in each node, we want 1 </span>
+<span class="c">#SBATCH --cpus-per-task=4       # We want 4 cores for this job.</span>
+<span class="c">#SBATCH --mem-per-cpu=16gb      # each core to have 16 Gb RAM</span>
+<span class="c">#SBATCH --gres=gpu:4            # We want 4 GPUs in each node for this job.</span>
+<span class="c">#SBATCH --time=30:00:00         # Run this task no longer than 30 hrs.</span>
+<span class="c">#SBATCH --partition=RTXA6000,V100-32GB,RTX3090  # Run this only in these mentioned GPUs. If you don't have any choice over GPUs, remove this parameter.</span>
+<span class="c">#SBATCH --job-name=mimic_loss</span>
+<span class="c">#SBATCH --output=mimic_loss_%A.logs</span>
+
+<span class="nb">echo</span> <span class="s2">"#############################"</span>
+<span class="nb">date
+echo</span> <span class="s2">"Current dir: "</span> <span class="k">${</span><span class="nv">SLURM_SUBMIT_DIR</span><span class="k">}</span>
+<span class="nb">echo</span> <span class="s2">"Hostname: </span><span class="sb">`</span><span class="nb">hostname</span><span class="sb">`</span><span class="s2">"</span>
+
+<span class="c"># Print the task details.</span>
+<span class="nb">echo</span> <span class="s2">"Job ID: </span><span class="k">${</span><span class="nv">SLURM_JOBID</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"SLURM array task ID:  </span><span class="k">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Node list: </span><span class="k">${</span><span class="nv">SLURM_JOB_NODELIST</span><span class="k">}</span><span class="s2">"</span> 
+<span class="nb">echo</span> <span class="s2">"Cluster name: </span><span class="k">${</span><span class="nv">SLURM_CLUSTER_NAME</span><span class="k">}</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="s2">"Partition name: </span><span class="k">${</span><span class="nv">SLURM_JOB_PARTITION</span><span class="k">}</span><span class="s2">"</span> 
+<span class="nb">echo</span> <span class="s2">"Using: </span><span class="sb">`</span>which python<span class="sb">`</span><span class="s2">"</span>
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s2">"#############################</span><span class="se">\n</span><span class="s2">"</span>
+
+srun <span class="nt">-K</span> <span class="se">\</span>
+<span class="nt">--container-mounts</span><span class="o">=</span>/netscratch/<span class="nv">$USER</span>:/netscratch/<span class="nv">$USER</span>,/ds:/ds:ro,<span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span>:<span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span>,/home/<span class="nv">$USER</span>/:/home/<span class="nv">$USER</span>/ <span class="se">\</span>
+<span class="nt">--container-image</span><span class="o">=</span>/netscratch/sagar/docker_images/images/10.2.sqsh <span class="se">\</span>
+<span class="nt">--container-workdir</span><span class="o">=</span><span class="s2">"</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span><span class="s2">"</span> <span class="se">\</span>
+bash run_task.sh
+</code></pre></div></div> <p>In my script, I use a basic docker image with minimal installation of just cuda and cudnn (a version of my choice). And to use the locally installed libraries and packages, I activate the virtual environment. All these are done in <code class="language-plaintext highlighter-rouge">run_task.sh</code> script</p> <ol> <li>Your <code class="language-plaintext highlighter-rouge">run_task.sh</code> script will have the actual training script/commands</li> </ol> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="c"># We jump into the submission dir</span>
+<span class="nb">cd</span> <span class="k">${</span><span class="nv">SLURM_SUBMIT_DIR</span><span class="k">}</span>
+
+<span class="c"># Activate the python virtual env</span>
+<span class="nb">source</span> /netscratch/sagar/thesis/sb_env/bin/activate
+
+<span class="c"># But if you are using conda (uncomment the lines below)</span>
+<span class="c"># . /netscratch/sagar/miniconda/etc/profile.d/conda.sh</span>
+<span class="c"># conda activate my_env_name</span>
+
+<span class="c"># If you need other packages that are not available in pip/conda, </span>
+<span class="c"># you can install them this way</span>
+apt-get update
+apt-get <span class="nt">-y</span> <span class="nb">install </span>libsndfile1
+
+
+<span class="c">## Single-GPU training</span>
+<span class="c"># Execute this python script (this will use 1 GPU regardless you have taken 4 or 8 GPUs)</span>
+python train.py hparams/robust_asr.yaml
+
+<span class="c">## Multi GPU training</span>
+<span class="c"># If you want your script to use all GPUs that you requested, follow this </span>
+<span class="nv">NUM_GPUS</span><span class="o">=</span>4
+python <span class="nt">-m</span> torch.distributed.launch <span class="se">\</span>
+<span class="nt">--nproc_per_node</span><span class="o">=</span><span class="k">${</span><span class="nv">NUM_GPUS</span><span class="k">}</span> <span class="se">\</span>
+<span class="nt">--nnodes</span><span class="o">=</span><span class="k">${</span><span class="nv">SLURM_JOB_NUM_NODES</span><span class="k">}</span> <span class="se">\</span>
+<span class="nt">--node_rank</span><span class="o">=</span><span class="k">${</span><span class="nv">SLURM_NODEID</span><span class="k">}</span> <span class="se">\</span>
+train.py hparams/robust_asr.yaml <span class="se">\</span>
+<span class="nt">--distributed_launch</span>
+
+<span class="c">## Note</span>
+<span class="c"># Multi-gpu jobs will be successful only if your script is adapted to perform DP or DDP training</span>
+</code></pre></div></div> <p><strong>Submit your job using</strong></p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sbatch sbatch_train.sh
+</code></pre></div></div> <h2 id="multi-node-multi-gpu-ddp-training">Multi-node multi-GPU DDP training</h2> <p>To utilize multiple nodes and all GPUs within those nodes, it is important to ensure that all nodes are connected to a master node. This will allow for efficient distribution of work across all available resources. This can be done using</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">MASTER</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$SLURM_JOB_NODELIST</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">","</span> <span class="nt">-f1</span> | <span class="nb">sed</span> <span class="s1">'s/[][]//g'</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s2">"-"</span> <span class="nt">-f</span> 1,2<span class="sb">`</span>
+</code></pre></div></div> <p>and then in the job submission script modify parameters this way</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> torch.distributed.launch 
+<span class="nt">--nproc_per_node</span><span class="o">=</span><span class="k">${</span><span class="nv">NUM_GPUS</span><span class="k">}</span> 
+<span class="nt">--nnodes</span><span class="o">=</span><span class="k">${</span><span class="nv">SLURM_JOB_NUM_NODES</span><span class="k">}</span> 
+<span class="nt">--master_addr</span><span class="o">=</span><span class="k">${</span><span class="nv">MASTER</span><span class="k">}</span> 
+<span class="nt">--master_port</span><span class="o">=</span>5557 
+<span class="nt">--node_rank</span><span class="o">=</span><span class="k">${</span><span class="nv">SLURM_NODEID</span><span class="k">}</span> 
+<span class="k">${</span><span class="nv">training_command</span><span class="k">}</span> 
+<span class="nt">--distributed_launch</span>
+</code></pre></div></div> <h2 id="downloading-a-docker-image">Downloading a docker image</h2> <p>Prepare a script with name <code class="language-plaintext highlighter-rouge">download_docker_img.sh</code></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">docker_img</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">docker_img_name</span><span class="o">=</span><span class="nv">$2</span>
+srun enroot import <span class="nt">-o</span> /netscratch/<span class="nv">$USER</span>/docker_images/<span class="nv">$docker_img_name</span> docker://<span class="nv">$docker_img</span>
+</code></pre></div></div> <p>Download docker image and prepare the sqsh file, E.g.</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./download_docker_img.sh nvidia/pytorch:20.10-py3 pytorch:20.10-py3.sqsh
+</code></pre></div></div>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[SLURM Commands- An Overview of Job Scheduling and Cluster Management System]]></summary></entry><entry><title type="html">CLI-based Google Drive Backup.</title><link href="https://sangeet2020.github.io/blog/2022/Gdrive/" rel="alternate" type="text/html" title="CLI-based Google Drive Backup."/><published>2022-08-12T18:40:16+02:00</published><updated>2022-08-12T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2022/Gdrive</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2022/Gdrive/"><![CDATA[<h2 id="terminal-friendly-gdrive">Terminal friendly <code class="language-plaintext highlighter-rouge">gdrive</code></h2> <p>To easily backup your trained model, dataset, logs, etc. to your Google Drive using a simple CLI, you can follow these steps:</p> <ol> <li>First, download the gdrive CLI tool by running the following commands: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
+<span class="nb">tar</span> <span class="nt">-xvf</span> gdrive_2.1.1_linux_386.tar.gz
+./gdrive
+</code></pre></div> </div> </li> <li>To make the <code class="language-plaintext highlighter-rouge">gdrive</code> command accessible from any directory, you can create a directory of your choice to store the <code class="language-plaintext highlighter-rouge">gdrive</code> binary file, such as <code class="language-plaintext highlighter-rouge">/home/sagar/bin/</code>. Then, add the path to this directory to your <code class="language-plaintext highlighter-rouge">$PATH</code> environment variable in your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file by running: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /home/sagar/bin/
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="s2">"/home/sagar/bin/"</span> <span class="c"># enter this in your bashrc</span>
+</code></pre></div> </div> </li> <li>Now, copy the <code class="language-plaintext highlighter-rouge">gdrive</code> binary file to your chosen directory: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>gdrive /home/sagar/bin/
+</code></pre></div> </div> </li> <li>To upload an entire directory recursively to your Google Drive, you can use the following command: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdrive upload <span class="nt">--parent</span> &lt;destination_id&gt; <span class="nt">--recursive</span> &lt;source_directory&gt;
+</code></pre></div> </div> <p>Replace <code class="language-plaintext highlighter-rouge">&lt;destination_id&gt;</code> with the ID of the destination folder in your Google Drive and <code class="language-plaintext highlighter-rouge">&lt;source_directory&gt;</code> with the path to the directory you want to upload. E.g. <code class="language-plaintext highlighter-rouge">https://drive.google.com/drive/u/1/folders/118mOZ771FOJiQMKRxX</code> this is indeded upload web-link of your google-drive, the destination id is <code class="language-plaintext highlighter-rouge">118mOZ771FOJiQMKRxX</code></p> </li> <li>To upload a single file to your Google Drive, you can use the following command: <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gdrive upload <span class="nt">--parent</span> &lt;destination_id&gt; &lt;source_file&gt;
+</code></pre></div> </div> <p>Replace <code class="language-plaintext highlighter-rouge">&lt;destination_id&gt;</code> with the ID of the destination folder in your Google Drive and <code class="language-plaintext highlighter-rouge">&lt;source_file&gt;</code> with the path to the file you want to upload.</p> </li> </ol> <p>By following these steps, you can easily backup your files to your Google Drive using a simple CLI.</p> <h4 id="reference">Reference</h4> <p>Github: <a href="https://github.com/prasmussen/gdrive">prasmussen/gdrive</a></p>]]></content><author><name></name></author><category term="tutorial"/><summary type="html"><![CDATA[This guide explains how to easily backup your files to Google Drive using a CLI tool, `gdrive`]]></summary></entry><entry><title type="html">Ideal bashrc</title><link href="https://sangeet2020.github.io/blog/2022/ideal_bashrc/" rel="alternate" type="text/html" title="Ideal bashrc"/><published>2022-06-01T18:40:16+02:00</published><updated>2022-06-01T18:40:16+02:00</updated><id>https://sangeet2020.github.io/blog/2022/ideal_bashrc</id><content type="html" xml:base="https://sangeet2020.github.io/blog/2022/ideal_bashrc/"><![CDATA[<h2 id="setting-up-your-bashrc">Setting up your bashrc</h2> <p>This post will discuss several features that are useful to have in your bashrc. These include:</p> <ul> <li>Creating a log of local history, which records all commands entered in the terminal and stores them in a file named <code class="language-plaintext highlighter-rouge">.history-sagar</code>.</li> <li>Defining useful aliases for commands to make them easier to type and remember.</li> <li>Adding attractive colors to the prompt for better readability and aesthetic appeal.</li> <li>Enabling color support for the ls command to make it easier to distinguish different file types.</li> <li>Adding the path to locally installed packages without the need for sudo permissions.</li> </ul> <h3 id="keeping-a-log-of-local-history">Keeping a Log of Local History</h3> <ul> <li>First install <code class="language-plaintext highlighter-rouge">gawk</code> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get <span class="nt">-y</span> <span class="nb">install </span>gawk
+</code></pre></div> </div> </li> <li> <p>Next insert this into your <code class="language-plaintext highlighter-rouge">.bashrc</code></p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nv">GAWK_PATH</span><span class="o">=</span><span class="s2">"/usr/bin/"</span>
+  myLocalHistory<span class="o">()</span> <span class="o">{</span>
+  <span class="k">if </span><span class="nb">test</span> <span class="nt">-w</span> <span class="nb">.</span>
+  <span class="k">then
+      </span><span class="nb">history </span>1 | <span class="k">${</span><span class="nv">GAWK_PATH</span><span class="k">}</span>/gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> .history-<span class="nv">$LOGNAME</span>
+  <span class="k">else
+      </span><span class="nb">history </span>1 | <span class="k">${</span><span class="nv">GAWK_PATH</span><span class="k">}</span>/gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "_PWD="  ENVIRON["PWD"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> ~/.history-all-<span class="nv">$LOGNAME</span>
+  <span class="k">fi</span>
+  <span class="o">}</span>
+
+  <span class="nb">export </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">"myLocalHistory 2&gt; /dev/null"</span>
+
+
+  grepLocalHistory<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> .history-<span class="nv">$LOGNAME</span>
+  <span class="o">}</span>
+  <span class="nb">alias </span><span class="nv">h</span><span class="o">=</span>grepLocalHistory
+
+</code></pre></div> </div> <p>Now everytime your enter <code class="language-plaintext highlighter-rouge">h</code> in terminal you get list of all commands entered along with time-stamps.</p> </li> </ul> <h3 id="defining-useful-aliases">Defining Useful Aliases</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias rm</span><span class="o">=</span><span class="s1">'rm -i'</span>
+<span class="nb">alias </span><span class="nv">lsn</span><span class="o">=</span><span class="s1">'ls'</span>
+<span class="nb">alias ls</span><span class="o">=</span><span class="s1">'ls --color'</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -hltr'</span>
+<span class="nb">alias </span><span class="nv">ltr</span><span class="o">=</span><span class="s1">'ls -ltr'</span>
+<span class="nb">alias </span><span class="nv">more</span><span class="o">=</span><span class="s1">'less'</span>
+<span class="nb">alias </span><span class="nv">cds</span><span class="o">=</span><span class="s1">'cd /home/sangeet'</span>
+<span class="nb">alias </span><span class="nv">cdn</span><span class="o">=</span><span class="s1">'cd /home/sangeet/sagar'</span>
+<span class="nb">alias </span><span class="nv">cdw</span><span class="o">=</span><span class="s1">'cd /mnt/New-Volume/work'</span>
+<span class="nb">alias </span><span class="nv">sb</span><span class="o">=</span><span class="s1">'source /home/sangeet/sagar/thesis/sb_env/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">bashrc</span><span class="o">=</span><span class="s1">'vim ~/.bashrc'</span>
+<span class="nb">alias </span><span class="nv">lsd</span><span class="o">=</span><span class="s1">'ls -d */'</span> <span class="c"># list only dirs</span>
+<span class="nb">alias </span><span class="nv">rmr</span><span class="o">=</span><span class="s1">'rm -rf *.out *.err *.logs'</span>
+<span class="nb">alias </span><span class="nv">start_int_gpu</span><span class="o">=</span><span class="s1">'/home/sagar/bin/start_int_gpu.sh $1 $2 $3'</span>
+
+<span class="nb">alias </span><span class="nv">condalist</span><span class="o">=</span><span class="s2">"conda info -e"</span>
+<span class="nb">alias </span><span class="nv">qgpu</span><span class="o">=</span><span class="s2">"srun --pty --mem=16gb -n 1 --gres=gpu:1 /bin/bash"</span>
+<span class="nb">alias </span><span class="nv">nsmi</span><span class="o">=</span><span class="s2">"watch -n 1 nvidia-smi"</span>
+<span class="nb">alias </span><span class="nv">nvsmi</span><span class="o">=</span><span class="s2">"watch --color -n 1 nvidia-smi"</span>
+<span class="nb">alias </span><span class="nv">nsmil</span><span class="o">=</span><span class="s1">'nvidia-smi'</span>
+<span class="nb">alias stat</span><span class="o">=</span><span class="s1">'squeue -u sagar -o "%.6i %9P %15j %.6u %.10T %.10M %.10l %.6D %10R %s %.10g"'</span>
+</code></pre></div></div> <h3 id="adding-attractive-prompt-coloring">Adding Attractive Prompt Coloring</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s1">'di=1;35:'</span> <span class="p">;</span> 
+<span class="nb">export </span>LS_COLORS
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.py=0;32"</span>:<span class="s2">"*.txt=0;36"</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.sh=0;32"</span>:<span class="s2">"*.wav=0;33"</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="s1">'di=1;36:fi=0:ln=1;35:pi=5;33:so=5;35:bd=5;37:cd=5;37:or=31;47;1:ex=1;32'</span>
+</code></pre></div></div> <h3 id="language-support">Language support</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export </span><span class="nv">LANGUAGE</span><span class="o">=</span>en_US.UTF-8
+</code></pre></div></div> <h3 id="enabling-color-support-for-ls">Enabling Color Support for ls</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#LS_COLORS=$LS_COLORS:'di=1;35:' ; export LS_COLORS</span>
+<span class="c">#export LS_COLORS=$LS_COLORS:"*.py=0;32":"*.txt=0;36"</span>
+<span class="c">#export LS_COLORS=$LS_COLORS:"*.sh=0;32":"*.wav=0;33"</span>
+<span class="c">#export LS_COLORS='di=1;36:fi=0:ln=1;35:pi=5;33:so=5;35:bd=5;37:cd=5;37:or=31;47;1:ex=1;32'</span>
+<span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s1">'di=1;35:'</span> <span class="p">;</span> <span class="nb">export </span>LS_COLORS
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.py=0;32"</span>:<span class="s2">"*.txt=0;36"</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.sh=0;32"</span>:<span class="s2">"*.wav=0;33"</span>
+</code></pre></div></div> <h3 id="adding-path-to-locally-installed-packages-without-sudo">Adding Path to Locally Installed Packages without Sudo</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="s2">"/home/sagar/.localpython/bin"</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="s2">"/netscratch/sagar/usr/share/yasm/bin"</span>:
+</code></pre></div></div>]]></content><author><name></name></author><category term="tech-post"/><summary type="html"><![CDATA[An ideal bashrc is a myth.]]></summary></entry></feed>
