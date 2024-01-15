@@ -10,9 +10,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CLI-based Google Drive Backup. | Sangeet  Sagar</title>
+    <title>ASR | Sangeet  Sagar</title>
     <meta name="author" content="Sangeet  Sagar">
-    <meta name="description" content="This guide explains how to easily backup your files to Google Drive using a CLI tool, `gdrive`">
+    <meta name="description" content="">
 
 
     <!-- Bootstrap & MDB -->
@@ -32,7 +32,7 @@
     <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%92%AC&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://sangeet2020.github.io/blog/2022/Gdrive/">
+    <link rel="canonical" href="https://sangeet2020.github.io/blog/tag/asr/">
     
     <!-- Dark Mode -->
     
@@ -120,108 +120,27 @@
 
     <!-- Content -->
     <div class="container mt-5">
-      <!-- _layouts/post.html -->
-
-<div class="post">
+      <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">CLI-based Google Drive Backup.</h1>
-    <p class="post-meta">August 12, 2022</p>
-    <p class="post-tags">
-      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
-        ·  
-        <a href="/blog/category/tutorial">
-          <i class="fas fa-tag fa-sm"></i> tutorial</a>  
-          
-
-    </p>
+    <h1 class="post-title"> <i class="fas fa-hashtag fa-sm"></i> ASR </h1>
+    <p class="post-description"> an archive of posts with this tag </p>
   </header>
 
-  <article class="post-content">
-    <h2 id="terminal-friendly-gdrive">Terminal friendly <code class="language-plaintext highlighter-rouge">gdrive</code>
-</h2>
-<p>To easily backup your trained model, dataset, logs, etc. to your Google Drive using a simple CLI, you can follow these steps:</p>
-
-<ol>
-  <li>First, download the gdrive CLI tool by running the following commands:
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
-<span class="nb">tar</span> <span class="nt">-xvf</span> gdrive_2.1.1_linux_386.tar.gz
-./gdrive
-</code></pre></div>    </div>
-  </li>
-  <li>To make the <code class="language-plaintext highlighter-rouge">gdrive</code> command accessible from any directory, you can create a directory of your choice to store the <code class="language-plaintext highlighter-rouge">gdrive</code> binary file, such as <code class="language-plaintext highlighter-rouge">/home/sagar/bin/</code>. Then, add the path to this directory to your <code class="language-plaintext highlighter-rouge">$PATH</code> environment variable in your <code class="language-plaintext highlighter-rouge">~/.bashrc</code> file by running:
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">mkdir</span> /home/sagar/bin/
-<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="s2">"/home/sagar/bin/"</span> <span class="c"># enter this in your bashrc</span>
-</code></pre></div>    </div>
-  </li>
-  <li>Now, copy the <code class="language-plaintext highlighter-rouge">gdrive</code> binary file to your chosen directory:
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="nb">cp </span>gdrive /home/sagar/bin/
-</code></pre></div>    </div>
-  </li>
-  <li>To upload an entire directory recursively to your Google Drive, you can use the following command:
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>gdrive upload <span class="nt">--parent</span> &lt;destination_id&gt; <span class="nt">--recursive</span> &lt;source_directory&gt;
-</code></pre></div>    </div>
-    <p>Replace <code class="language-plaintext highlighter-rouge">&lt;destination_id&gt;</code> with the ID of the destination folder in your Google Drive and <code class="language-plaintext highlighter-rouge">&lt;source_directory&gt;</code> with the path to the directory you want to upload. E.g. <code class="language-plaintext highlighter-rouge">https://drive.google.com/drive/u/1/folders/118mOZ771FOJiQMKRxX</code> this is indeded upload web-link of your google-drive, the destination id is <code class="language-plaintext highlighter-rouge">118mOZ771FOJiQMKRxX</code></p>
-  </li>
-  <li>To upload a single file to your Google Drive, you can use the following command:
-    <div class="language-bash highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>gdrive upload <span class="nt">--parent</span> &lt;destination_id&gt; &lt;source_file&gt;
-</code></pre></div>    </div>
-    <p>Replace <code class="language-plaintext highlighter-rouge">&lt;destination_id&gt;</code> with the ID of the destination folder in your Google Drive and <code class="language-plaintext highlighter-rouge">&lt;source_file&gt;</code> with the path to the file you want to upload.</p>
-  </li>
-</ol>
-
-<p>By following these steps, you can easily backup your files to your Google Drive using a simple CLI.</p>
-
-<h4 id="reference">Reference</h4>
-<p>Github: <a href="https://github.com/prasmussen/gdrive" rel="external nofollow noopener" target="_blank">prasmussen/gdrive</a></p>
-
+  <article>
+    <div class="table-responsive">
+      <table class="table table-sm table-borderless">
+        
+        <tr>
+          <th scope="row">Jan 14, 2024</th>
+          <td>
+              <a class="post-link" href="/blog/2024/RNN-T-based-ASR-model/">RNN-T in Automatic Speech Recognition</a>
+          </td>
+        </tr>
+      
+      </table>
+    </div>
   </article>
-
-
-  
-    
-    <br>
-    <hr>
-    <br>
-    <ul class="list-disc pl-8"></ul>
-
-    <!-- Adds related posts to the end of an article -->
-    <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2>
-    <p class="mb-2">Here are some more articles you might like to read next:</p>
-  
-
-  <li class="my-2">
-    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/RNN-T-based-ASR-model/">RNN-T in Automatic Speech Recognition</a>
-  </li>
-
-  
-
-  <li class="my-2">
-    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/Pruned_RNNT/">Pruned RNN-T Explained</a>
-  </li>
-
-  
-
-  <li class="my-2">
-    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/icefall_data_prepration/">icefall- Data Prepration Pipeline</a>
-  </li>
-
-  
-
-  <li class="my-2">
-    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/icefall_audio_read/">icefall- Audio read</a>
-  </li>
-
-  
-
-  <li class="my-2">
-    <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2023/feature_extraction/">icefall- Feature Extraction Pipeline</a>
-  </li>
 
 </div>
 
