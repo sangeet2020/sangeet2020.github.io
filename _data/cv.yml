@@ -3,10 +3,8 @@
   contents:
     - name: Full Name
       value: Sangeet Sagar
-    - name: Date of Birth
-      value: March 1997
     - name: Languages
-      value: English, Hindi, German (A1.1)
+      value: Hindi (Native), English (C1), German (A2)
 
 - title: Education
   type: time_table
@@ -15,42 +13,54 @@
       institution: Universität des Saarlandes, Saarbrücken, Germany
       year: April 2023
       description:
-        - Thesis- <a href="https://sangeet2020.github.io/assets/pdf/MS_Thesis_Speech_Recognition_for_SAR_domain.pdf">Noise Robust Speech Recognition for Search and Rescue Domain</a>
+        - GPA- 1.8 (ECTS, lower is better)
+        - Thesis- <a href="https://sangeet2020.github.io/ms-thesis/">Noise Robust Speech Recognition for Search and Rescue Domain</a>
         - Major- Language Science and Technology
     - title: B.Tech. 
       institution: The LNM Institute of Information Technology, Jaipur, India
       year: June 2019
       description:
-        - Thesis- <a href="https://sangeet2020.github.io/assets/pdf/Bachelors_Thesis-Sangeet_Sagar.pdf"> Analysis of Emotion Recognition using Speech Features</a>
+        - GPA- 7.13/10.0
+        - Thesis- <a href="https://sangeet2020.github.io/assets/pdf/Bachelors_Thesis-Sangeet_Sagar.pdf">Analysis of Emotion Recognition using Speech Features</a>
         - Major- Electronics and Communication Engineering
 
 - title: Experience
   type: time_table
   contents:
-    - title: Research Assistant
-      institution: Deutsches Forschungszentrum für Künstliche Intelligenz (DFKI) GmbH, Saarbrücken, Germany
-      year: 2021-2023
+    - title: Research Engineer for Automatic Speech Recognition
+      institution: EML Speech Technology GmbH, Munich, Germany
+      year: Sept 2023 - July 2025
       description:
-        - As a part of MS thesis, built a noise robust automatic speech recognition system (STT) (German language) capable to work under hostile conditions like search and rescue missions. Also, train RNN based large language models for speech recognition.
+        - Leading the development of end-to-end models to facilitate real-time Automatic Speech Recognition (ASR) during live conferences within a commercial setting.
+        - Developed a C++ runtime for a streaming faster Conformer-Transducer (NeMo) and integrated its CPU-based decoder with our in-house end-to-end ASR decoder.
+        - Initiated and guided the integration of a target speaker extraction system into the core ASR pipeline, improving WER by 18% on overlapping speech and enabling deployment in challenging multi-speaker scenarios.
+
+    - title: Speech-to-Text Intern
+      institution: Airbus Defence and Space GmbH, Munich, Germany
+      year: May 2023 - Sept 2023
+      description:
+        - Utilized SOTA models such as the Wav2Vec2 and Whisper ASR models to enhance communication between pilots and air traffic control (ATC) by developing state-of-the-art speech-to-text systems for aerospace domain data.
+
+    - title: Research Assistant | HiWi
+      institution: German Research Center for Artificial Intelligence (DFKI) GmbH, Saarbrücken, Germany
+      year: June 2021 - Feb 2023
+      description:
+        - Designed and developed a noise-robust automatic speech recognition system (STT) (German language) as a component of MS thesis, enabling functionality under hostile noisy conditions such as search and rescue operations.
         - Trained open-source attention-based BiRNN punctuation restoration system+TruCasing for the German language. The system outperformed the baseline model- Vosk model by over 14% in recall metric.
 
     - title: University research assistant
       institution: Institute of Formal and Applied Linguistics, Charles University, Prague, Czechia
-      year: 2019-2020
+      year: Oct. 2019 - Dec 2020
       description:
-        - Principle tester of the live speech-language translation (SLT) system at live test sessions for the <a href="https://elitr.eu/overview/"> ELITR project</a>
-        - Training and testing (with in-domain/out-of-domain data) Czech punctuator system for live ASR.
-        - Perform domain adaptation for live ASR by fine-tuning LM by using speaker-specific data.
-        # - Set up pipelines for the <a href="https://github.com/ELITR/elitr-testset"> ELITR test set </a> and to get it ready for evaluation.
+        - Served as the principal tester and evaluator for a live speech-language translation (SLT) system (<a href="https://elitr.eu/overview/">ELITR project</a>), identifying key failure points and providing critical feedback.
+        - Training and testing (with in-domain/out-of-domain data) Czech punctuator system for live ASR, thereby improving the usability of live ASR transcripts.
 
     - title: University research assistant
       institution: Faculty of Information Technology, Brno University of Technology, Brno, Czechia
-      year: 2019
+      year: Feb. 2019 - Sept. 2019
       description:
-        - Developed a system for cross-lingual topic identification in low resource scenarios for Kinyarwanda, Zulu, Hindi and Reuters corpus.
-        - Achieved a remarkable weighted average precision score of 0.52 (on 10 different topics) on Kinyarwanda language by learning a simple linear transformation from this language to English language space.
-        # - Attained significant improvement of results for multilingual document classification on Reuters corpus compared to the existing framework.
-        # - Primary task- text feature extraction, training classifier, generating document embeddings, and learning transformation from unknown language to English space.
+        - Developed and implemented a novel system for cross-lingual topic identification in low-resource languages (Kinyarwanda, Zulu, Hindi), achieving a weighted average precision of 0.52 on Kinyarwanda by building upon a linear transformation technique to English embedding space.
+        - Managed core tasks including text feature extraction, classifier training, and embedding generation for cross-lingual analysis.
 
 - title: Open Source Projects
   type: time_table
@@ -86,6 +96,6 @@
 - title: Programming Skills
   type: list
   contents:
-    - <u>Languages:</u> Python, Unix, MATLAB, R
-    - <u>Toolkits/Libraries:</u> PyTorch, <a href="https://speechbrain.github.io/"> SpeechBrain </a>,  GPT, Scikit-learn, Numpy, Huggingface, Matplotlib
-    - <u>Misc.:</u> GIT, Advanced Linux user, Extensive experience with cluster computing like SLURM
+    - <u>Programming Languages:</u> Python, C++, Bash, MATLAB
+    - <u>Libraries/Frameworks:</u> PyTorch, K2/Icefall, SpeechBrain, Huggingface
+    - <u>Tools & Platforms:</u> Docker, Git, AWS, HPC (SLURM), Adv. Linux user
