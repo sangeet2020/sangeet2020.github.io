@@ -1,0 +1,988 @@
+<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>My Shell Configuration Files | Sangeet Sagar</title> <meta name="author" content="Sangeet Sagar"> <meta name="description" content="A collection of fine-tuned shell configuration files including bashrc, zshrc, custom functions, and more to boost terminal productivity."> <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.1/css/academicons.min.css" integrity="sha256-i1+4qU2G2860dGGIOJscdC30s9beBXjFfzjWLjBRsBg=" crossorigin="anonymous"> <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%92%AC&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css"> <link rel="canonical" href="https://sangeet2020.github.io/blog/2025/mybashrc/"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark"> <script src="/assets/js/theme.js"></script> <script src="/assets/js/dark_mode.js"></script> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script type="text/javascript">window.MathJax={tex:{tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script> <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script src="/assets/js/distillpub/template.v2.js"></script> <script src="/assets/js/distillpub/transforms.v2.js"></script> <script src="/assets/js/distillpub/overrides.js"></script> </head> <body> <d-front-matter> <script async type="text/json">{
+      "title": "My Shell Configuration Files",
+      "description": "A collection of fine-tuned shell configuration files including bashrc, zshrc, custom functions, and more to boost terminal productivity.",
+      "published": "January 14, 2025",
+      "authors": [
+        {
+          "author": "Sangeet Sagar",
+          "authorURL": "",
+          "affiliations": [
+            {
+              "name": "",
+              "url": ""
+            }
+          ]
+        }
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script> </d-front-matter> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Sangeet </span>Sagar</a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About</a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">Blog<span class="sr-only">(current)</span></a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications</a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">Projects</a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">Repositories</a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV</a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item" href="/ms-thesis/">MS Thesis</a> <div class="dropdown-divider"></div> <a class="dropdown-item" href="/bc-thesis/">BC Thesis</a> </div> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="fas fa-moon"></i> <i class="fas fa-sun"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="post distill"> <d-title> <h1>My Shell Configuration Files</h1> <p>A collection of fine-tuned shell configuration files including bashrc, zshrc, custom functions, and more to boost terminal productivity.</p> </d-title> <d-byline></d-byline> <d-article> <h1 id="my-shell-configuration-files">My Shell Configuration Files</h1> <p>Welcome to my collection of shell configuration files! These configurations have been fine-tuned over years of daily use to boost productivity and make terminal work more enjoyable. Each file serves a specific purpose in creating a seamless command-line experience.</p> <h2 id="-table-of-contents">📋 Table of Contents</h2> <ul> <li><a href="#bashrc">.bashrc</a></li> <li><a href="#zshrc">.zshrc</a></li> <li><a href="#custom_functions">.custom_functions</a></li> <li><a href="#fancy-promptsh">.fancy-prompt.sh</a></li> <li><a href="#screenrc">.screenrc</a></li> <li><a href="#zsh_aliases">.zsh_aliases</a></li> <li><a href="#vimrc">.vimrc</a></li> </ul> <hr> <h2 id="bashrc">.bashrc</h2> <p>The heart of Bash configuration - contains environment variables, PATH modifications, and basic shell settings.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#============================================================#</span>
+<span class="c">#                     Part 1: System Settings                #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># ~/.bashrc: executed by bash(1) for non-login shells.</span>
+
+<span class="c"># If not running interactively, don't do anything</span>
+<span class="k">case</span> <span class="nv">$-</span> <span class="k">in</span>
+    <span class="k">*</span>i<span class="k">*</span><span class="p">)</span> <span class="p">;;</span>
+      <span class="k">*</span><span class="p">)</span> <span class="k">return</span><span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="c"># don't put duplicate lines or lines starting with space in the history.</span>
+<span class="nv">HISTCONTROL</span><span class="o">=</span>ignoreboth
+
+<span class="c"># append to the history file, don't overwrite it</span>
+<span class="nb">shopt</span> <span class="nt">-s</span> histappend
+
+<span class="c"># for setting history length see HISTSIZE and HISTFILESIZE in bash(1)</span>
+<span class="nv">HISTSIZE</span><span class="o">=</span>1000
+<span class="nv">HISTFILESIZE</span><span class="o">=</span>2000
+
+<span class="c"># check the window size after each command and, if necessary,</span>
+<span class="c"># update the values of LINES and COLUMNS.</span>
+<span class="nb">shopt</span> <span class="nt">-s</span> checkwinsize
+
+<span class="c"># make less more friendly for non-text input files</span>
+<span class="o">[</span> <span class="nt">-x</span> /usr/bin/lesspipe <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span><span class="nv">SHELL</span><span class="o">=</span>/bin/sh lesspipe<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># set variable identifying the chroot you work in (used in the prompt below)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="k">${</span><span class="nv">debian_chroot</span><span class="k">:-}</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="nt">-r</span> /etc/debian_chroot <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">debian_chroot</span><span class="o">=</span><span class="si">$(</span><span class="nb">cat</span> /etc/debian_chroot<span class="si">)</span>
+<span class="k">fi
+
+</span><span class="nb">stty </span>erase ^?
+
+<span class="c">#============================================================#</span>
+<span class="c">#                  Part 2: Prompt Customization              #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Set a fancy prompt (non-color, unless we know we "want" color)</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$TERM</span><span class="s2">"</span> <span class="k">in
+    </span>xterm-color|<span class="k">*</span><span class="nt">-256color</span><span class="p">)</span> <span class="nv">color_prompt</span><span class="o">=</span><span class="nb">yes</span><span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="c"># Uncomment for a colored prompt, if the terminal has the capability</span>
+<span class="c"># force_color_prompt=yes</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$force_color_prompt</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-x</span> /usr/bin/tput <span class="o">]</span> <span class="o">&amp;&amp;</span> tput setaf 1 <span class="o">&gt;</span>&amp;/dev/null<span class="p">;</span> <span class="k">then
+        </span><span class="nv">color_prompt</span><span class="o">=</span><span class="nb">yes
+    </span><span class="k">else
+        </span><span class="nv">color_prompt</span><span class="o">=</span>
+    <span class="k">fi
+fi
+
+if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$color_prompt</span><span class="s2">"</span> <span class="o">=</span> <span class="nb">yes</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">'\[\033[01;33m\][\u@\h\[\033[01;32m\] \W\[\033[01;33m\]]\$\[\033[00m\] '</span>
+<span class="k">else
+    </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">'${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '</span>
+<span class="k">fi
+</span><span class="nb">unset </span>color_prompt force_color_prompt
+
+<span class="c"># If this is an xterm, set the title to user@host:dir</span>
+<span class="k">case</span> <span class="s2">"</span><span class="nv">$TERM</span><span class="s2">"</span> <span class="k">in
+    </span>xterm<span class="k">*</span><span class="p">|</span>rxvt<span class="k">*</span><span class="p">)</span>
+        <span class="nv">PS1</span><span class="o">=</span><span class="s2">"</span><span class="se">\[\e</span><span class="s2">]0;</span><span class="k">${</span><span class="nv">debian_chroot</span>:+<span class="p">(</span><span class="nv">$debian_chroot</span><span class="p">)</span><span class="k">}</span><span class="se">\u</span><span class="s2">@</span><span class="se">\h</span><span class="s2">: </span><span class="se">\w\a\]</span><span class="nv">$PS1</span><span class="s2">"</span>
+        <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span>
+        <span class="p">;;</span>
+<span class="k">esac</span>
+
+
+<span class="c">#============================================================#</span>
+<span class="c">#               Part 3: Color and Alias Definitions          #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Enable color support for 'ls' and add handy aliases</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-x</span> /usr/bin/dircolors <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">test</span> <span class="nt">-r</span> ~/.dircolors <span class="o">&amp;&amp;</span> <span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dircolors</span> <span class="nt">-b</span> ~/.dircolors<span class="si">)</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">dircolors</span> <span class="nt">-b</span><span class="si">)</span><span class="s2">"</span>
+    <span class="nb">alias ls</span><span class="o">=</span><span class="s1">'ls --color=auto'</span>
+    <span class="nb">alias dir</span><span class="o">=</span><span class="s1">'dir --color=auto'</span>
+    <span class="nb">alias vdir</span><span class="o">=</span><span class="s1">'vdir --color=auto'</span>
+
+    <span class="nb">alias grep</span><span class="o">=</span><span class="s1">'grep --color=auto'</span>
+    <span class="nb">alias </span><span class="nv">fgrep</span><span class="o">=</span><span class="s1">'fgrep --color=auto'</span>
+    <span class="nb">alias </span><span class="nv">egrep</span><span class="o">=</span><span class="s1">'egrep --color=auto'</span>
+<span class="k">fi</span>
+
+<span class="c"># Additional 'ls' aliases for convenience</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'ls -alF'</span>
+<span class="nb">alias </span><span class="nv">la</span><span class="o">=</span><span class="s1">'ls -A'</span>
+<span class="nb">alias </span><span class="nv">l</span><span class="o">=</span><span class="s1">'ls -CF'</span>
+
+<span class="c"># Add an "alert" alias for long running commands. Use like so:</span>
+<span class="c">#   sleep 10; alert</span>
+<span class="nb">alias </span><span class="nv">alert</span><span class="o">=</span><span class="s1">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1 | sed -e '</span><span class="se">\'</span><span class="s1">'s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//'</span><span class="se">\'</span><span class="s1">')"'</span>
+
+<span class="c"># Check if ~/.bash_aliases exists and source it for additional aliases</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.bash_aliases <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">.</span> ~/.bash_aliases
+<span class="k">fi</span>
+
+<span class="c"># Enable programmable completion features if not already enabled</span>
+<span class="k">if</span> <span class="o">!</span> <span class="nb">shopt</span> <span class="nt">-oq</span> posix<span class="p">;</span> <span class="k">then
+    if</span> <span class="o">[</span> <span class="nt">-f</span> /usr/share/bash-completion/bash_completion <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> /usr/share/bash-completion/bash_completion
+    <span class="k">elif</span> <span class="o">[</span> <span class="nt">-f</span> /etc/bash_completion <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> /etc/bash_completion
+    <span class="k">fi
+fi</span>
+
+<span class="c"># colored GCC warnings and errors</span>
+<span class="nb">export </span><span class="nv">GCC_COLORS</span><span class="o">=</span><span class="s1">'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'</span>
+
+
+<span class="c">#============================================================#</span>
+<span class="c">#                     Part 4: Custom Functions               #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Function to display terminal color codes</span>
+colors<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span>fgc bgc vals seq0
+    <span class="nb">printf</span> <span class="s2">"Color escapes are %s</span><span class="se">\n</span><span class="s2">"</span> <span class="s1">'\e[${value};...;${value}m'</span>
+    <span class="nb">printf</span> <span class="s2">"Values 30..37 are </span><span class="se">\e</span><span class="s2">[33mforeground colors</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">printf</span> <span class="s2">"Values 40..47 are </span><span class="se">\e</span><span class="s2">[43mbackground colors</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">printf</span> <span class="s2">"Value  1 gives a  </span><span class="se">\e</span><span class="s2">[1mbold-faced look</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n\n</span><span class="s2">"</span>
+
+    <span class="k">for </span>fgc <span class="k">in</span> <span class="o">{</span>30..37<span class="o">}</span><span class="p">;</span> <span class="k">do
+        for </span>bgc <span class="k">in</span> <span class="o">{</span>40..47<span class="o">}</span><span class="p">;</span> <span class="k">do
+            </span><span class="nv">fgc</span><span class="o">=</span><span class="k">${</span><span class="nv">fgc</span><span class="p">#37</span><span class="k">}</span> <span class="c"># white</span>
+            <span class="nv">bgc</span><span class="o">=</span><span class="k">${</span><span class="nv">bgc</span><span class="p">#40</span><span class="k">}</span> <span class="c"># black</span>
+            <span class="nv">vals</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">fgc</span>:+<span class="nv">$fgc</span><span class="p">;</span><span class="k">}${</span><span class="nv">bgc</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nv">vals</span><span class="o">=</span><span class="k">${</span><span class="nv">vals</span><span class="p">%%;</span><span class="k">}</span>
+            <span class="nv">seq0</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">vals</span>:+<span class="p">\e[</span><span class="k">${</span><span class="nv">vals</span><span class="k">}</span><span class="nv">m</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">printf</span> <span class="s2">"  %-9s"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">seq0</span><span class="k">:-</span><span class="p">(default)</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">printf</span> <span class="s2">" </span><span class="k">${</span><span class="nv">seq0</span><span class="k">}</span><span class="s2">TEXT</span><span class="se">\e</span><span class="s2">[m"</span>
+            <span class="nb">printf</span> <span class="s2">" </span><span class="se">\e</span><span class="s2">[</span><span class="k">${</span><span class="nv">vals</span>:+<span class="k">${</span><span class="nv">vals</span><span class="p">+</span><span class="nv">$vals</span><span class="p">;</span><span class="k">}}</span><span class="s2">1mBOLD</span><span class="se">\e</span><span class="s2">[m"</span>
+        <span class="k">done
+        </span><span class="nb">echo</span><span class="p">;</span> <span class="nb">echo
+    </span><span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c"># Function to extract various archive types</span>
+ex<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+            <span class="k">*</span>.tar.bz2<span class="p">)</span> <span class="nb">tar </span>xjvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tar.gz<span class="p">)</span>  <span class="nb">tar </span>xzvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.bz2<span class="p">)</span>     bunzip2 <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.rar<span class="p">)</span>     unrar xv <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.gz<span class="p">)</span>      <span class="nb">gunzip</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tar<span class="p">)</span>     <span class="nb">tar </span>xvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tbz2<span class="p">)</span>    <span class="nb">tar </span>xjvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tgz<span class="p">)</span>     <span class="nb">tar </span>xzvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.zip<span class="p">)</span>     unzip <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.Z<span class="p">)</span>       uncompress <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.7z<span class="p">)</span>      7z x <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span><span class="p">)</span>         <span class="nb">echo</span> <span class="s2">"'</span><span class="nv">$1</span><span class="s2">' cannot be extracted via ex()"</span> <span class="p">;;</span>
+        <span class="k">esac</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"'</span><span class="nv">$1</span><span class="s2">' is not a valid file"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># Function to log local history in a specific format</span>
+myLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-w</span> <span class="nb">.</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">history </span>1 | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> .history-<span class="nv">$LOGNAME</span>
+    <span class="k">else
+        </span><span class="nb">history </span>1 | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "_PWD="  ENVIRON["PWD"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> ~/.history-all-<span class="nv">$LOGNAME</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+<span class="nb">export </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">"myLocalHistory 2&gt; /dev/null"</span>
+
+<span class="c"># Function to search local history</span>
+grepLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> .history-<span class="nv">$LOGNAME</span>
+<span class="o">}</span>
+<span class="nb">alias </span><span class="nv">h</span><span class="o">=</span>grepLocalHistory
+
+<span class="c"># Function to remove directories gracefully, including empty ones with history files</span>
+gracefulRmDir<span class="o">()</span> <span class="o">{</span>
+    <span class="k">for </span>d <span class="k">in</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            if</span> <span class="o">[</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">ls</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span><span class="s2">"</span> <span class="nt">-ge</span> 1 <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"Directory not empty: </span><span class="nv">$d</span><span class="s2">"</span> <span class="o">&gt;</span>&amp;2
+            <span class="k">else
+                </span><span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span>/.history-<span class="nv">$LOGNAME</span>
+                /bin/rmdir <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">exit </span>1
+            <span class="k">fi
+        else
+            </span><span class="nb">echo</span> <span class="s2">"Not a directory: </span><span class="nv">$d</span><span class="s2">"</span> <span class="o">&gt;</span>&amp;2
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+<span class="nb">alias rmdir</span><span class="o">=</span>gracefulRmDir
+
+
+gzcount<span class="o">()</span> <span class="o">{</span>
+    <span class="k">for </span>file <span class="k">in</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">: </span><span class="si">$(</span><span class="nb">gzip</span> <span class="nt">-cd</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2"> is not a valid file"</span>
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+
+
+<span class="c">#============================================================#</span>
+<span class="c">#               Part 5: Environment Variables and Paths      #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Set default language and locale</span>
+<span class="nb">export </span><span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8
+<span class="nb">export </span><span class="nv">LANGUAGE</span><span class="o">=</span>en_US.UTF-8
+
+<span class="c"># Set the terminal type to support 256 colors</span>
+<span class="nb">export </span><span class="nv">TERM</span><span class="o">=</span>xterm-256color
+
+<span class="c"># Custom Library Paths</span>
+<span class="c"># export LD_LIBRARY_PATH=/mnt/users/sagarst/bin/miniconda/lib:$LD_LIBRARY_PATH</span>
+
+<span class="c"># Packages installed from source</span>
+<span class="c"># export PATH="/mnt/users/sagarst/bin/miniconda/bin:$PATH"  # commented out by conda initialize</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$HOME</span>/.local/bin:/usr/local/bin:<span class="nv">$PATH</span>
+
+<span class="c"># Custom Python Path</span>
+<span class="nb">export </span><span class="nv">PYTHONPATH</span><span class="o">=</span>/mnt/local/sangeet/workncode/k2-fsa/icefall:/mnt/local/sangeet/workncode/k2/k2-fsa/icefall:<span class="nv">$PYTHONPATH</span>
+
+<span class="c"># Path to sherpa executable</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/mnt/local/sangeet/workncode/k2-fsa/sherpa-onnx/build/bin/
+
+<span class="c"># Path to sherpa C API executable (static compilation)</span>
+<span class="nb">export </span><span class="nv">PKG_CONFIG_PATH</span><span class="o">=</span><span class="s2">"/mnt/local/sangeet/workncode/k2-fsa/sherpa-onnx/build-static:</span><span class="nv">$PKG_CONFIG_PATH</span><span class="s2">"</span>
+
+<span class="c"># CUDA and CUDNN environment variables</span>
+<span class="c">#export CUDA_HOME=/usr/local/cuda-11.2</span>
+<span class="nb">export </span><span class="nv">CUDA_HOME</span><span class="o">=</span>/home/sagarst/bin/cuda/12.4.0
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/lib64:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/lib:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/extras/CUPTI/lib64:<span class="nv">$LD_LIBRARY_PATH</span>
+<span class="nb">export </span><span class="nv">CUDAToolkit_ROOT_DIR</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+<span class="nb">export </span><span class="nv">CUDAToolkit_ROOT</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+
+
+<span class="c"># CUDA toolkit paths</span>
+<span class="nb">export </span><span class="nv">CUDA_TOOLKIT_ROOT_DIR</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+<span class="nb">export </span><span class="nv">CUDA_TOOLKIT_ROOT</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+<span class="nb">export </span><span class="nv">CUDA_BIN_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+<span class="nb">export </span><span class="nv">CUDA_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>
+<span class="nb">export </span><span class="nv">CUDA_INC_PATH</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/targets/x86_64-linux
+<span class="nb">export </span><span class="nv">CUDAToolkit_TARGET_DIR</span><span class="o">=</span><span class="nv">$CUDA_HOME</span>/targets/x86_64-linux
+
+
+
+<span class="c"># Additional CFLAGS for CUDA</span>
+<span class="nb">export </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="nt">-I</span><span class="nv">$CUDA_HOME</span>/targets/x86_64-linux/include:<span class="nv">$CFLAGS</span>
+
+<span class="c"># Set Theano flags for GPU usage</span>
+<span class="nb">export </span><span class="nv">THEANO_FLAGS</span><span class="o">=</span><span class="s1">'floatX=float32,device=cuda0,gpuarray.preallocate=1'</span>
+
+<span class="c"># Load SSH directory if ~/.sshcd file exists</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> ~/.sshcd <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">cd</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">cat</span> ~/.sshcd<span class="si">)</span><span class="s2">"</span>
+    <span class="nb">rm</span> ~/.sshcd
+<span class="k">fi</span>
+
+<span class="c"># Zero size of core dump (avoid disk quota overfill)</span>
+<span class="nb">ulimit</span> <span class="nt">-c</span> 1
+
+<span class="c"># Kaldi root from Volker- Mon Aug 12 03:47:43 PM CEST 2024</span>
+<span class="nb">export </span><span class="nv">KALDI_ROOT</span><span class="o">=</span><span class="s2">"/mnt/local/volker/Kaldi/"</span>
+
+<span class="c"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c"># !! Contents within this block are managed by 'conda init' !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="s1">'/mnt/users/sagarst/bin/miniconda/bin/conda'</span> <span class="s1">'shell.bash'</span> <span class="s1">'hook'</span> 2&gt; /dev/null<span class="si">)</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="s2">"</span><span class="nv">$__conda_setup</span><span class="s2">"</span>
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"/mnt/users/sagarst/bin/miniconda/etc/profile.d/conda.sh"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> <span class="s2">"/mnt/users/sagarst/bin/miniconda/etc/profile.d/conda.sh"</span>
+    <span class="k">else
+        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/mnt/users/sagarst/bin/miniconda/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+    <span class="k">fi
+fi
+</span><span class="nb">unset </span>__conda_setup
+<span class="c"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+
+<span class="c"># Huggingface cache dir</span>
+<span class="nb">export </span><span class="nv">HF_HOME</span><span class="o">=</span>/mnt/users/sagarst/.hf_cache
+
+<span class="c">#============================================================#</span>
+<span class="c">#          Part 6: Specialized Aliases and Functions         #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># General Aliases</span>
+<span class="nb">alias rm</span><span class="o">=</span><span class="s1">'rm -i'</span>  <span class="c"># Prompt before deleting files</span>
+<span class="nb">alias </span><span class="nv">more</span><span class="o">=</span><span class="s1">'less'</span> <span class="c"># Use 'less' instead of 'more'</span>
+<span class="nb">alias </span><span class="nv">lsn</span><span class="o">=</span><span class="s1">'ls'</span>    <span class="c"># Alias for listing files</span>
+<span class="nb">alias </span><span class="nv">lsd</span><span class="o">=</span><span class="s1">'ls -d */'</span> <span class="c"># List only directories</span>
+
+<span class="c"># Directory Navigation Aliases</span>
+<span class="nb">alias </span><span class="nv">cds</span><span class="o">=</span><span class="s1">'cd /home/sagarst'</span>
+<span class="nb">alias </span><span class="nv">cdn</span><span class="o">=</span><span class="s1">'cd /mnt/users/sagarst'</span>
+<span class="nb">alias </span><span class="nv">cdw</span><span class="o">=</span><span class="s1">'cd /mnt/local/sangeet/workncode/'</span>
+<span class="nb">alias </span><span class="nv">cdl</span><span class="o">=</span><span class="s1">'cd /mnt/local/sangeet/'</span>
+<span class="nb">alias </span><span class="nv">cdr</span><span class="o">=</span><span class="s1">'cd /mnt/amtmpvf2/sangeet'</span>
+
+<span class="c"># Activation of Virtual Environments</span>
+<span class="nb">alias </span><span class="nv">sb</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/sb_env/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">k2c</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/k2-cpu/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">k2g</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/k2-gpu/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">nemo</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/nemo/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">esp</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/esp/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">wenet</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/wenet/bin/activate'</span>
+
+<span class="c"># Shortcut for editing bashrc</span>
+<span class="nb">alias </span><span class="nv">bashrc</span><span class="o">=</span><span class="s1">'vim ~/.bashrc'</span>
+
+<span class="c"># Alias for removing specific file types</span>
+<span class="nb">alias </span><span class="nv">rmr</span><span class="o">=</span><span class="s1">'rm -rf *.out *.err *.logs'</span>
+
+<span class="c"># Custom Command for Starting GPU</span>
+<span class="nb">alias </span><span class="nv">start_int_gpu</span><span class="o">=</span><span class="s1">'/home/sagar/bin/start_int_gpu.sh $1 $2 $3'</span>
+
+<span class="c"># VPN Connection Alias</span>
+<span class="nb">alias </span>eml-vpn<span class="o">=</span><span class="s1">'sudo openvpn --verb 3 --config /home/eml-speech/work/vpn/sangeet_sagar@vpn.eml.org.ovpn'</span>
+
+<span class="c"># GPU Management</span>
+<span class="nb">alias </span><span class="nv">gpu</span><span class="o">=</span><span class="s1">'export CUDA_VISIBLE_DEVICES=$(nvisel --max-count 1 --min-free-memory 5GiB --max-gpu-utilization 50)'</span>
+
+<span class="c"># Listing Aliases</span>
+<span class="nb">alias </span><span class="nv">lsr</span><span class="o">=</span><span class="s1">'eza --icons=always -R'</span>    <span class="c"># Recursive listing</span>
+<span class="nb">alias </span><span class="nv">ltr</span><span class="o">=</span><span class="s1">'eza --icons=always  -ltr'</span>  <span class="c"># List sorted by modification time</span>
+<span class="nb">alias </span><span class="nv">lls</span><span class="o">=</span><span class="s1">'eza --icons=always -lh'</span> 
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'eza --icons=always --sort modified -l'</span>
+
+
+<span class="c"># Conda environment listing</span>
+<span class="nb">alias </span><span class="nv">condalist</span><span class="o">=</span><span class="s2">"conda info -e"</span>
+
+<span class="c"># GPU job submission command</span>
+<span class="nb">alias </span><span class="nv">qgpu</span><span class="o">=</span><span class="s2">"srun --pty --mem=16gb -n 1 --gres=gpu:1 /bin/bash"</span>
+
+<span class="c"># Monitoring GPU</span>
+<span class="nb">alias </span><span class="nv">nsmi</span><span class="o">=</span><span class="s2">"nvitop"</span> <span class="c"># Advanced GPU monitoring</span>
+<span class="nb">alias </span><span class="nv">nvsmi</span><span class="o">=</span><span class="s2">"watch --color -n 1 nvidia-smi"</span> <span class="c"># Regular monitoring with auto-refresh</span>
+<span class="nb">alias </span><span class="nv">nsmil</span><span class="o">=</span><span class="s1">'nvidia-smi'</span> <span class="c"># Simple call to nvidia-smi</span>
+
+<span class="c"># SGE job queue status</span>
+<span class="nb">alias stat</span><span class="o">=</span><span class="s1">'squeue -u sagar -o "%.6i %9P %15j %.6u %.10T %.10M %.10l %.6D %10R %s %.10g"'</span>
+
+<span class="c"># TTS Command</span>
+<span class="nb">alias </span><span class="nv">rekni</span><span class="o">=</span><span class="s1">'espeak -v europe/cs -s 150'</span>
+
+
+<span class="c">#============================================================#</span>
+<span class="c">#                 Part 9: End of the file functions          #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Initialize LS_COLORS with directory color</span>
+<span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s1">'di=1;35:'</span> 
+
+<span class="c"># Set non-executable file types (no chmod)</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.py=0;32:"</span>    <span class="c"># Python files: Green</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.sh=0;34:"</span>    <span class="c"># Shell scripts: Blue</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.md=0;37:"</span>    <span class="c"># Markdown files: White</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.txt=0;37:"</span>   <span class="c"># Text files: White</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.wav=0;33:"</span>   <span class="c"># WAV audio files: Yellow</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.jpg=0;35:"</span>   <span class="c"># JPEG images: Magenta</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.png=0;34:"</span>   <span class="c"># PNG images: Blue</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.pdf=0;31:"</span>   <span class="c"># PDF documents: Red</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.html=0;33:"</span>  <span class="c"># HTML files: Yellow</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.css=0;34:"</span>   <span class="c"># CSS files: Blue</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.js=0;33:"</span>    <span class="c"># JavaScript files: Yellow</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.json=0;36:"</span>  <span class="c"># JSON files: Cyan</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.xml=0;32:"</span>   <span class="c"># XML files: Green</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.zip=0;31:"</span>   <span class="c"># ZIP archives: Red</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.tar=0;31:"</span>   <span class="c"># TAR archives: Red</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.gz=0;31:"</span>    <span class="c"># GZ compressed files: Red</span>
+
+<span class="c"># Set executable file types (chmod a+x)</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.py=1;32:"</span>    <span class="c"># Executable Python files: Bold Green</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.sh=1;34:"</span>    <span class="c"># Executable Shell scripts: Bold Blue</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.exe=1;31:"</span>   <span class="c"># Executable files: Bold Red</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.bat=1;33:"</span>   <span class="c"># Batch files: Bold Yellow</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.bin=1;31:"</span>   <span class="c"># Binary files: Bold Red</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.pl=1;35:"</span>    <span class="c"># Perl scripts: Bold Magenta</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.out=1;34:"</span>   <span class="c"># Executable output files: Bold Blue</span>
+<span class="nb">export </span><span class="nv">LS_COLORS</span><span class="o">=</span><span class="nv">$LS_COLORS</span>:<span class="s2">"*.run=1;33:"</span>   <span class="c"># Linux run files: Bold Yellow</span>
+
+<span class="c"># Apply the LS_COLORS configuration</span>
+<span class="nb">export </span>LS_COLORS
+
+<span class="c"># Fancy Linux Prompt</span>
+<span class="nb">source</span> ~/.fancy-prompt.sh
+<span class="nb">.</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.cargo/env"</span>
+
+<span class="c"># Startship cross-shell prompt theme</span>
+<span class="c"># eval "$(starship init bash)"</span>
+
+</code></pre></div></div> <hr> <h2 id="zshrc">.zshrc</h2> <p>Main Zsh configuration file with Oh My Zsh setup, plugins, and Zsh-specific settings.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.</span>
+<span class="c"># Initialization code that may require console input (password prompts, [y/n]</span>
+<span class="c"># confirmations, etc.) must go above this block; everything else may go below.</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nt">-r</span> <span class="s2">"</span><span class="k">${</span><span class="nv">XDG_CACHE_HOME</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.cache</span><span class="k">}</span><span class="s2">/p10k-instant-prompt-</span><span class="k">${</span><span class="p">(%)</span><span class="k">:-</span><span class="p">%n</span><span class="k">}</span><span class="s2">.zsh"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">source</span> <span class="s2">"</span><span class="k">${</span><span class="nv">XDG_CACHE_HOME</span><span class="k">:-</span><span class="nv">$HOME</span><span class="p">/.cache</span><span class="k">}</span><span class="s2">/p10k-instant-prompt-</span><span class="k">${</span><span class="p">(%)</span><span class="k">:-</span><span class="p">%n</span><span class="k">}</span><span class="s2">.zsh"</span>
+<span class="k">fi</span>
+
+<span class="c"># packages installed from source</span>
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/bin:<span class="nv">$HOME</span>/.local/bin:/usr/local/bin:<span class="nv">$PATH</span>
+
+<span class="c"># Path to your Oh My Zsh installation.</span>
+<span class="nb">export </span><span class="nv">ZSH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.oh-my-zsh"</span>
+
+<span class="c"># Set name of the theme to load --- if set to "random", it will</span>
+<span class="c"># load a random theme each time Oh My Zsh is loaded, in which case,</span>
+<span class="c"># to know which specific one was loaded, run: echo $RANDOM_THEME</span>
+<span class="c"># See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</span>
+<span class="nv">ZSH_THEME</span><span class="o">=</span><span class="s2">"robbyrussell"</span>
+
+<span class="c"># Set list of themes to pick from when loading at random</span>
+<span class="c"># Setting this variable when ZSH_THEME=random will cause zsh to load</span>
+<span class="c"># a theme from this variable instead of looking in $ZSH/themes/</span>
+<span class="c"># If set to an empty array, this variable will have no effect.</span>
+<span class="c"># ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )</span>
+
+<span class="c"># Uncomment the following line to use case-sensitive completion.</span>
+<span class="c"># CASE_SENSITIVE="true"</span>
+
+<span class="c"># Uncomment the following line to use hyphen-insensitive completion.</span>
+<span class="c"># Case-sensitive completion must be off. _ and - will be interchangeable.</span>
+<span class="c"># HYPHEN_INSENSITIVE="true"</span>
+
+<span class="c"># Uncomment one of the following lines to change the auto-update behavior</span>
+<span class="c"># zstyle ':omz:update' mode disabled  # disable automatic updates</span>
+<span class="c"># zstyle ':omz:update' mode auto      # update automatically without asking</span>
+<span class="c"># zstyle ':omz:update' mode reminder  # just remind me to update when it's time</span>
+
+<span class="c"># Uncomment the following line to change how often to auto-update (in days).</span>
+<span class="c"># zstyle ':omz:update' frequency 13</span>
+
+<span class="c"># Uncomment the following line if pasting URLs and other text is messed up.</span>
+<span class="c"># DISABLE_MAGIC_FUNCTIONS="true"</span>
+
+<span class="c"># Uncomment the following line to disable colors in ls.</span>
+<span class="c"># DISABLE_LS_COLORS="true"</span>
+
+<span class="c"># Uncomment the following line to disable auto-setting terminal title.</span>
+<span class="c"># DISABLE_AUTO_TITLE="true"</span>
+
+<span class="c"># Uncomment the following line to enable command auto-correction.</span>
+<span class="c"># ENABLE_CORRECTION="true"</span>
+
+<span class="c"># Uncomment the following line to display red dots whilst waiting for completion.</span>
+<span class="c"># You can also set it to another string to have that shown instead of the default red dots.</span>
+<span class="c"># e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"</span>
+<span class="c"># Caution: this setting can cause issues with multiline prompts in zsh &lt; 5.7.1 (see #5765)</span>
+<span class="c"># COMPLETION_WAITING_DOTS="true"</span>
+
+<span class="c"># Uncomment the following line if you want to disable marking untracked files</span>
+<span class="c"># under VCS as dirty. This makes repository status check for large repositories</span>
+<span class="c"># much, much faster.</span>
+<span class="c"># DISABLE_UNTRACKED_FILES_DIRTY="true"</span>
+
+<span class="c"># Uncomment the following line if you want to change the command execution time</span>
+<span class="c"># stamp shown in the history command output.</span>
+<span class="c"># You can set one of the optional three formats:</span>
+<span class="c"># "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"</span>
+<span class="c"># or set a custom format using the strftime function format specifications,</span>
+<span class="c"># see 'man strftime' for details.</span>
+<span class="c"># HIST_STAMPS="mm/dd/yyyy"</span>
+
+<span class="c"># Would you like to use another custom folder than $ZSH/custom?</span>
+<span class="c"># ZSH_CUSTOM=/path/to/new-custom-folder</span>
+
+<span class="c"># Which plugins would you like to load?</span>
+<span class="c"># Standard plugins can be found in $ZSH/plugins/</span>
+<span class="c"># Custom plugins may be added to $ZSH_CUSTOM/plugins/</span>
+<span class="c"># Example format: plugins=(rails git textmate ruby lighthouse)</span>
+<span class="c"># Add wisely, as too many plugins slow down shell startup.</span>
+<span class="nv">plugins</span><span class="o">=(</span>git<span class="o">)</span>
+
+<span class="nb">source</span> <span class="nv">$ZSH</span>/oh-my-zsh.sh
+
+<span class="c"># User configuration</span>
+
+<span class="c"># export MANPATH="/usr/local/man:$MANPATH"</span>
+
+<span class="c"># You may need to manually set your language environment</span>
+<span class="c"># export LANG=en_US.UTF-8</span>
+
+<span class="c"># Preferred editor for local and remote sessions</span>
+<span class="c"># if [[ -n $SSH_CONNECTION ]]; then</span>
+<span class="c">#   export EDITOR='vim'</span>
+<span class="c"># else</span>
+<span class="c">#   export EDITOR='mvim'</span>
+<span class="c"># fi</span>
+
+<span class="c"># Compilation flags</span>
+<span class="c"># export ARCHFLAGS="-arch x86_64"</span>
+
+<span class="c"># Set personal aliases, overriding those provided by Oh My Zsh libs,</span>
+<span class="c"># plugins, and themes. Aliases can be placed here, though Oh My Zsh</span>
+<span class="c"># users are encouraged to define aliases within a top-level file in</span>
+<span class="c"># the $ZSH_CUSTOM folder, with .zsh extension. Examples:</span>
+<span class="c"># - $ZSH_CUSTOM/aliases.zsh</span>
+<span class="c"># - $ZSH_CUSTOM/macos.zsh</span>
+<span class="c"># For a full list of active aliases, run `alias`.</span>
+<span class="c">#</span>
+<span class="c"># Example aliases</span>
+<span class="c"># alias zshconfig="mate ~/.zshrc"</span>
+<span class="c"># alias ohmyzsh="mate ~/.oh-my-zsh"</span>
+<span class="nb">source</span> /home/sagarst/bin/main/powerlevel10k/powerlevel10k.zsh-theme
+
+<span class="c"># history setup</span>
+<span class="nv">HISTFILE</span><span class="o">=</span><span class="nv">$HOME</span>/.zhistory.<span class="si">$(</span><span class="nb">tty</span> | <span class="nb">sed</span> <span class="s1">'s/[^a-zA-Z0-9]/_/g'</span><span class="si">)</span>
+<span class="nv">SAVEHIST</span><span class="o">=</span>1000
+<span class="nv">HISTSIZE</span><span class="o">=</span>999
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+
+<span class="c"># completion using arrow keys (based on history)</span>
+bindkey <span class="s1">'^[[A'</span> history-search-backward
+bindkey <span class="s1">'^[[B'</span> history-search-forward
+
+  <span class="c"># Enable word navigation with Ctrl + Left/Right arrow keys in Zsh</span>
+bindkey <span class="s1">'^[[1;5C'</span> forward-word   <span class="c"># Ctrl + Right arrow</span>
+bindkey <span class="s1">'^[[1;5D'</span> backward-word  <span class="c"># Ctrl + Left arrow</span>
+
+bindkey  <span class="s2">"^[[H"</span>   beginning-of-line
+bindkey  <span class="s2">"^[[F"</span>   end-of-line
+bindkey  <span class="s2">"^[[3~"</span>  delete-char
+bindkey  <span class="s2">"^[[1~"</span>  beginning-of-line  <span class="c"># Additional binding for screen</span>
+bindkey  <span class="s2">"^[[4~"</span>  end-of-line  <span class="c"># Additional binding for screen</span>
+
+<span class="nv">WORDCHARS</span><span class="o">=</span><span class="s1">'*?[]~#%^(){}&lt;&gt;|&amp;'</span>
+
+<span class="nb">source</span> /home/sagarst/bin/zsh-autosuggestions/zsh-autosuggestions.zsh
+<span class="nb">source</span> /home/sagarst/bin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+<span class="c"># To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.</span>
+<span class="o">[[</span> <span class="o">!</span> <span class="nt">-f</span> ~/.p10k.zsh <span class="o">]]</span> <span class="o">||</span> <span class="nb">source</span> ~/.p10k.zsh
+
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="s2">"/home/sagarst/bin"</span> <span class="c"># Add custom bin directory to PATH</span>
+
+<span class="c"># ---- Eza (better ls) -----</span>
+
+<span class="nb">alias ls</span><span class="o">=</span><span class="s2">"/home/sagarst/bin/eza --icons=always"</span>
+
+<span class="c"># ---- Zoxide (better cd) ----</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>/home/sagarst/bin/zoxide init zsh<span class="si">)</span><span class="s2">"</span>
+
+<span class="nb">alias cd</span><span class="o">=</span><span class="s2">"z"</span>
+
+<span class="c"># Directory Navigation Aliases</span>
+<span class="nb">alias </span><span class="nv">cds</span><span class="o">=</span><span class="s1">'cd /home/sagarst'</span>
+<span class="nb">alias </span><span class="nv">cdn</span><span class="o">=</span><span class="s1">'cd /mnt/users/sagarst'</span>
+<span class="nb">alias </span><span class="nv">cdw</span><span class="o">=</span><span class="s1">'cd /mnt/local/sangeet/workncode/'</span>
+<span class="nb">alias </span><span class="nv">cdl</span><span class="o">=</span><span class="s1">'cd /mnt/local/sangeet/'</span>
+<span class="nb">alias </span><span class="nv">cdr</span><span class="o">=</span><span class="s1">'cd /mnt/amtmpvf2/sangeet'</span>
+
+<span class="c"># All aliases</span>
+<span class="nb">source</span> ~/.zsh_aliases
+
+
+<span class="c">#============================================================#</span>
+<span class="c">#                     Custom Functions                       #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Function to log local history in a specific format</span>
+myLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-w</span> <span class="nb">.</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">fc</span> <span class="nt">-l</span> <span class="nt">-1</span> | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> .history-<span class="nv">$LOGNAME</span>
+    <span class="k">else
+        </span><span class="nb">fc</span> <span class="nt">-l</span> <span class="nt">-1</span> | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "_PWD="  ENVIRON["PWD"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> ~/.history-all-<span class="nv">$LOGNAME</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># export PROMPT_COMMAND="myLocalHistory 2&gt; /dev/null"</span>
+
+precmd<span class="o">()</span> <span class="o">{</span>
+    myLocalHistory 2&gt;/dev/null
+<span class="o">}</span>
+
+<span class="c"># Function to search local history</span>
+grepLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> .history-<span class="nv">$LOGNAME</span>
+<span class="o">}</span>
+<span class="nb">alias </span><span class="nv">h</span><span class="o">=</span>grepLocalHistory
+
+
+</code></pre></div></div> <hr> <h2 id="custom_functions">.custom_functions</h2> <p>Collection of custom shell functions that automate repetitive tasks and enhance workflow efficiency.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Function to display terminal color codes</span>
+colors<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">local </span>fgc bgc vals seq0
+    <span class="nb">printf</span> <span class="s2">"Color escapes are %s</span><span class="se">\n</span><span class="s2">"</span> <span class="s1">'\e[${value};...;${value}m'</span>
+    <span class="nb">printf</span> <span class="s2">"Values 30..37 are </span><span class="se">\e</span><span class="s2">[33mforeground colors</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">printf</span> <span class="s2">"Values 40..47 are </span><span class="se">\e</span><span class="s2">[43mbackground colors</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n</span><span class="s2">"</span>
+    <span class="nb">printf</span> <span class="s2">"Value  1 gives a  </span><span class="se">\e</span><span class="s2">[1mbold-faced look</span><span class="se">\e</span><span class="s2">[m</span><span class="se">\n\n</span><span class="s2">"</span>
+
+    <span class="k">for </span>fgc <span class="k">in</span> <span class="o">{</span>30..37<span class="o">}</span><span class="p">;</span> <span class="k">do
+        for </span>bgc <span class="k">in</span> <span class="o">{</span>40..47<span class="o">}</span><span class="p">;</span> <span class="k">do
+            </span><span class="nv">fgc</span><span class="o">=</span><span class="k">${</span><span class="nv">fgc</span><span class="p">#37</span><span class="k">}</span> <span class="c"># white</span>
+            <span class="nv">bgc</span><span class="o">=</span><span class="k">${</span><span class="nv">bgc</span><span class="p">#40</span><span class="k">}</span> <span class="c"># black</span>
+            <span class="nv">vals</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">fgc</span>:+<span class="nv">$fgc</span><span class="p">;</span><span class="k">}${</span><span class="nv">bgc</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nv">vals</span><span class="o">=</span><span class="k">${</span><span class="nv">vals</span><span class="p">%%;</span><span class="k">}</span>
+            <span class="nv">seq0</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">vals</span>:+<span class="p">\e[</span><span class="k">${</span><span class="nv">vals</span><span class="k">}</span><span class="nv">m</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">printf</span> <span class="s2">"  %-9s"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">seq0</span><span class="k">:-</span><span class="p">(default)</span><span class="k">}</span><span class="s2">"</span>
+            <span class="nb">printf</span> <span class="s2">" </span><span class="k">${</span><span class="nv">seq0</span><span class="k">}</span><span class="s2">TEXT</span><span class="se">\e</span><span class="s2">[m"</span>
+            <span class="nb">printf</span> <span class="s2">" </span><span class="se">\e</span><span class="s2">[</span><span class="k">${</span><span class="nv">vals</span>:+<span class="k">${</span><span class="nv">vals</span><span class="p">+</span><span class="nv">$vals</span><span class="p">;</span><span class="k">}}</span><span class="s2">1mBOLD</span><span class="se">\e</span><span class="s2">[m"</span>
+        <span class="k">done
+        </span><span class="nb">echo</span><span class="p">;</span> <span class="nb">echo
+    </span><span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c"># Function to extract various archive types</span>
+ex<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="k">in</span>
+            <span class="k">*</span>.tar.bz2<span class="p">)</span> <span class="nb">tar </span>xjvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tar.gz<span class="p">)</span>  <span class="nb">tar </span>xzvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.bz2<span class="p">)</span>     bunzip2 <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.rar<span class="p">)</span>     unrar xv <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.gz<span class="p">)</span>      <span class="nb">gunzip</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tar<span class="p">)</span>     <span class="nb">tar </span>xvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tbz2<span class="p">)</span>    <span class="nb">tar </span>xjvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.tgz<span class="p">)</span>     <span class="nb">tar </span>xzvf <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.zip<span class="p">)</span>     unzip <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.Z<span class="p">)</span>       uncompress <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span>.7z<span class="p">)</span>      7z x <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="p">;;</span>
+            <span class="k">*</span><span class="p">)</span>         <span class="nb">echo</span> <span class="s2">"'</span><span class="nv">$1</span><span class="s2">' cannot be extracted via ex()"</span> <span class="p">;;</span>
+        <span class="k">esac</span>
+    <span class="k">else
+        </span><span class="nb">echo</span> <span class="s2">"'</span><span class="nv">$1</span><span class="s2">' is not a valid file"</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="c"># Function to log local history in a specific format</span>
+myLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nt">-w</span> <span class="nb">.</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+        </span><span class="nb">history </span>1 | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> .history-<span class="nv">$LOGNAME</span>
+    <span class="k">else
+        </span><span class="nb">history </span>1 | gawk <span class="s1">'($2 !~ "^[mr]?cd[0-9a-z]?$") {$1="_T="strftime("%Y%m%d_%H:%M:%S_") PROCINFO["ppid"] "_PWD="  ENVIRON["PWD"] "\t"; $2=gensub("^_T=[-_0-9:]*[ \t]* *", "", 1, $2); $2=gensub("^_P=[^ \t]* *", "", 1, $2); print;}'</span> <span class="o">&gt;&gt;</span> ~/.history-all-<span class="nv">$LOGNAME</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+<span class="nb">export </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">"myLocalHistory 2&gt; /dev/null"</span>
+
+<span class="c"># Function to search local history</span>
+grepLocalHistory<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">grep</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> .history-<span class="nv">$LOGNAME</span>
+<span class="o">}</span>
+<span class="nb">alias </span><span class="nv">h</span><span class="o">=</span>grepLocalHistory
+
+<span class="c"># Function to remove directories gracefully, including empty ones with history files</span>
+gracefulRmDir<span class="o">()</span> <span class="o">{</span>
+    <span class="k">for </span>d <span class="k">in</span> <span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+        if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            if</span> <span class="o">[</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">ls</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> | <span class="nb">wc</span> <span class="nt">-l</span><span class="si">)</span><span class="s2">"</span> <span class="nt">-ge</span> 1 <span class="o">]</span><span class="p">;</span> <span class="k">then
+                </span><span class="nb">echo</span> <span class="s2">"Directory not empty: </span><span class="nv">$d</span><span class="s2">"</span> <span class="o">&gt;</span>&amp;2
+            <span class="k">else
+                </span><span class="nb">rm</span> <span class="nt">-f</span> <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span>/.history-<span class="nv">$LOGNAME</span>
+                /bin/rmdir <span class="s2">"</span><span class="nv">$d</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">exit </span>1
+            <span class="k">fi
+        else
+            </span><span class="nb">echo</span> <span class="s2">"Not a directory: </span><span class="nv">$d</span><span class="s2">"</span> <span class="o">&gt;</span>&amp;2
+        <span class="k">fi
+    done</span>
+<span class="o">}</span>
+<span class="nb">alias rmdir</span><span class="o">=</span>gracefulRmDir
+
+</code></pre></div></div> <hr> <h2 id="fancy-promptsh">.fancy-prompt.sh</h2> <p>Custom prompt configuration script that creates an informative and visually appealing command prompt.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+
+__powerline<span class="o">()</span> <span class="o">{</span>
+    <span class="c"># Unicode symbols</span>
+    <span class="nb">readonly </span><span class="nv">GIT_BRANCH_CHANGED_SYMBOL</span><span class="o">=</span><span class="s1">'+'</span>
+    <span class="nb">readonly </span><span class="nv">GIT_NEED_PULL_SYMBOL</span><span class="o">=</span><span class="s1">'⇣'</span>
+    <span class="nb">readonly </span><span class="nv">GIT_NEED_PUSH_SYMBOL</span><span class="o">=</span><span class="s1">'⇡'</span>
+    <span class="nb">readonly </span><span class="nv">PS_SYMBOL</span><span class="o">=</span><span class="s1">'🍻'</span>
+
+    <span class="c"># Solarized colorscheme</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE00</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 11<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright yellow</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE01</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 10<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright green</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE02</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 0<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Black</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE03</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 8<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Dark gray</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE0</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 12<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Bright blue</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE1</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 14<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Bright cyan</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE2</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 7<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>     <span class="c"># Background color: White</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE3</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 15<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Bright white</span>
+<span class="nb">readonly </span><span class="nv">BG_BLUE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 4<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Blue</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE4</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 208<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright orange</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE5</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 214<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Light orange</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE6</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 226<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright yellow</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE7</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 229<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Light yellow</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE8</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 93<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Bright purple</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE9</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 99<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Light purple</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE10</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 135<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Violet</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE11</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 129<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light violet</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE12</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 164<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Bright magenta</span>
+<span class="nb">readonly </span><span class="nv">BG_BASE13</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 201<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light magenta</span>
+
+<span class="nb">readonly </span><span class="nv">BG_COLOR1</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;240m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Gray (xterm-256 color, index 240)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR2</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;238m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Dark gray (xterm-256 color, index 238)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR3</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;238m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Dark gray (xterm-256 color, index 238)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR4</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;31m</span><span class="se">\\</span><span class="s2">]"</span>       <span class="c"># Background color: Dark blue (xterm-256 color, index 31)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR5</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;31m</span><span class="se">\\</span><span class="s2">]"</span>       <span class="c"># Background color: Dark blue (xterm-256 color, index 31)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR6</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;237m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Very dark gray (xterm-256 color, index 237)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR7</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;237m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Very dark gray (xterm-256 color, index 237)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR8</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;161m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Deep pink (xterm-256 color, index 161)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR9</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;161m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Deep pink (xterm-256 color, index 161)</span>
+
+<span class="nb">readonly </span><span class="nv">BG_COLOR10</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;208m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Bright orange (xterm-256 color, index 208)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR11</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;214m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light orange (xterm-256 color, index 214)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR12</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;226m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Bright yellow (xterm-256 color, index 226)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR13</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;229m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light yellow (xterm-256 color, index 229)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR14</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;93m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright purple (xterm-256 color, index 93)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR15</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;99m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Light purple (xterm-256 color, index 99)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR16</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;135m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Violet (xterm-256 color, index 135)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR17</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;129m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light violet (xterm-256 color, index 129)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR18</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;164m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Bright magenta (xterm-256 color, index 164)</span>
+<span class="nb">readonly </span><span class="nv">BG_COLOR19</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[48;5;201m</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Background color: Light magenta (xterm-256 color, index 201)</span>
+
+<span class="nb">readonly </span><span class="nv">BG_CYAN</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 6<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Background color: Cyan</span>
+<span class="nb">readonly </span><span class="nv">BG_GREEN</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 2<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>     <span class="c"># Background color: Green</span>
+<span class="nb">readonly </span><span class="nv">BG_MAGENTA</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 5<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Magenta</span>
+<span class="nb">readonly </span><span class="nv">BG_ORANGE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 9<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Bright red/orange</span>
+<span class="nb">readonly </span><span class="nv">BG_RED</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 1<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>       <span class="c"># Background color: Red</span>
+<span class="nb">readonly </span><span class="nv">BG_VIOLET</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 13<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Background color: Bright magenta/violet</span>
+<span class="nb">readonly </span><span class="nv">BG_YELLOW</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setab 3<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Background color: Yellow</span>
+<span class="nb">readonly </span><span class="nv">BOLD</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput bold<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>            <span class="c"># Bold text</span>
+<span class="nb">readonly </span><span class="nv">BOLD_WHITE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput bold<span class="si">)</span><span class="se">\$</span><span class="s2">(tput setaf 17)</span><span class="se">\\</span><span class="s2">]"</span>  <span class="c"># Bold and white text</span>
+
+<span class="nb">readonly </span><span class="nv">DIM</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput dim<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>              <span class="c"># Dim text</span>
+
+<span class="nb">readonly </span><span class="nv">FG_BASE00</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 11<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright yellow</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE01</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 10<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright green</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE02</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 0<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Black</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE03</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 8<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Dark gray</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE0</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 12<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Bright blue</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE1</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 14<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Bright cyan</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE2</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 7<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>     <span class="c"># Foreground color: White</span>
+<span class="nb">readonly </span><span class="nv">FG_BASE3</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 15<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Bright white</span>
+<span class="nb">readonly </span><span class="nv">FG_BLUE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 4<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Blue</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR1</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;250m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Light gray (xterm-256 color, index 250)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR2</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;240m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Gray (xterm-256 color, index 240)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR3</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;250m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Light gray (xterm-256 color, index 250)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR4</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;238m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Dark gray (xterm-256 color, index 238)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR6</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;31m</span><span class="se">\\</span><span class="s2">]"</span>       <span class="c"># Foreground color: Dark blue (xterm-256 color, index 31)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR7</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;250m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Light gray (xterm-256 color, index 250)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR8</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;237m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Very dark gray (xterm-256 color, index 237)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR9</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;161m</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Deep pink (xterm-256 color, index 161)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR10</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;208m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright orange (xterm-256 color, index 208)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR11</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;214m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Light orange (xterm-256 color, index 214)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR12</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;226m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright yellow (xterm-256 color, index 226)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR13</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;229m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Light yellow (xterm-256 color, index 229)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR14</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;93m</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Bright purple (xterm-256 color, index 93)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR15</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;99m</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Light purple (xterm-256 color, index 99)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR16</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;135m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Violet (xterm-256 color, index 135)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR17</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;129m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Light violet (xterm-256 color, index 129)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR18</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;164m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright magenta (xterm-256 color, index 164)</span>
+<span class="nb">readonly </span><span class="nv">FG_COLOR19</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="se">\\</span><span class="s2">e[38;5;201m</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Light magenta (xterm-256 color, index 201)</span>
+
+<span class="nb">readonly </span><span class="nv">FG_CYAN</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 6<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>      <span class="c"># Foreground color: Cyan</span>
+<span class="nb">readonly </span><span class="nv">FG_GREEN</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 2<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>     <span class="c"># Foreground color: Green</span>
+<span class="nb">readonly </span><span class="nv">FG_MAGENTA</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 5<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Magenta</span>
+<span class="nb">readonly </span><span class="nv">FG_ORANGE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 9<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Bright red/orange</span>
+<span class="nb">readonly </span><span class="nv">FG_RED</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 1<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>       <span class="c"># Foreground color: Red</span>
+<span class="nb">readonly </span><span class="nv">FG_VIOLET</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 13<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>   <span class="c"># Foreground color: Bright magenta/violet</span>
+<span class="nb">readonly </span><span class="nv">FG_YELLOW</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput setaf 3<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>    <span class="c"># Foreground color: Yellow</span>
+<span class="nb">readonly </span><span class="nv">RESET</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput sgr0<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>           <span class="c"># Reset text attributes</span>
+<span class="nb">readonly </span><span class="nv">REVERSE</span><span class="o">=</span><span class="s2">"</span><span class="se">\\</span><span class="s2">[</span><span class="si">$(</span>tput rev<span class="si">)</span><span class="se">\\</span><span class="s2">]"</span>          <span class="c"># Reverse video (swap foreground and background)</span>
+
+
+    __git_info<span class="o">()</span> <span class="o">{</span>
+        <span class="c"># no .git directory</span>
+    	<span class="o">[</span> <span class="nt">-d</span> .git <span class="o">]</span> <span class="o">||</span> <span class="k">return
+
+        </span><span class="nb">local </span>aheadN
+        <span class="nb">local </span>behindN
+        <span class="nb">local </span>branch
+        <span class="nb">local </span>marks
+        <span class="nb">local </span>stats
+
+        <span class="c"># get current branch name or short SHA1 hash for detached head</span>
+        <span class="nv">branch</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span>git symbolic-ref <span class="nt">--short</span> HEAD 2&gt;/dev/null <span class="o">||</span> git describe <span class="nt">--tags</span> <span class="nt">--always</span> 2&gt;/dev/null<span class="si">)</span><span class="s2">"</span>
+        <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$branch</span><span class="s2">"</span> <span class="o">]</span> <span class="o">||</span> <span class="k">return</span>  <span class="c"># git branch not found</span>
+
+        <span class="c"># how many commits local branch is ahead/behind of remote?</span>
+        <span class="nv">stats</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span>git status <span class="nt">--porcelain</span> <span class="nt">--branch</span> | <span class="nb">grep</span> <span class="s1">'^##'</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'\[.\+\]$'</span><span class="si">)</span><span class="s2">"</span>
+        <span class="nv">aheadN</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$stats</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'ahead \d\+'</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'\d\+'</span><span class="si">)</span><span class="s2">"</span>
+        <span class="nv">behindN</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$stats</span><span class="s2">"</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'behind \d\+'</span> | <span class="nb">grep</span> <span class="nt">-o</span> <span class="s1">'\d\+'</span><span class="si">)</span><span class="s2">"</span>
+        <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$aheadN</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> marks+<span class="o">=</span><span class="s2">" </span><span class="nv">$GIT_NEED_PUSH_SYMBOL$aheadN</span><span class="s2">"</span>
+        <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$behindN</span><span class="s2">"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> marks+<span class="o">=</span><span class="s2">" </span><span class="nv">$GIT_NEED_PULL_SYMBOL$behindN</span><span class="s2">"</span>
+
+        <span class="c"># print the git branch segment without a trailing newline</span>
+        <span class="c"># branch is modified?</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="si">$(</span>git status <span class="nt">--porcelain</span><span class="si">)</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">printf</span> <span class="s2">"%s"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BG_COLOR8</span><span class="k">}</span><span class="s2"></span><span class="nv">$RESET$BG_COLOR8</span><span class="s2"> </span><span class="nv">$branch$marks</span><span class="s2"> </span><span class="nv">$FG_COLOR9</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nb">printf</span> <span class="s2">"%s"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BG_BLUE</span><span class="k">}</span><span class="s2"></span><span class="nv">$RESET$BG_BLUE</span><span class="s2"> </span><span class="nv">$branch$marks</span><span class="s2"> </span><span class="nv">$RESET$FG_BLUE</span><span class="s2">"</span>
+        <span class="k">fi</span>
+    <span class="o">}</span>
+    git_toplevel_dir<span class="o">()</span> <span class="o">{</span>
+        <span class="k">if </span>git rev-parse <span class="nt">--is-inside-work-tree</span> &amp;&gt;/dev/null<span class="p">;</span> <span class="k">then
+            </span><span class="nb">basename</span> <span class="s2">"</span><span class="si">$(</span>git rev-parse <span class="nt">--show-toplevel</span><span class="si">)</span><span class="s2">"</span>
+        <span class="k">fi</span>
+        <span class="o">}</span>
+
+    virtual_env_name<span class="o">()</span> <span class="o">{</span>
+        <span class="c"># Check if VIRTUAL_ENV is set and the shell is interactive</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$VIRTUAL_ENV</span><span class="s2">"</span> <span class="o">&amp;&amp;</span> <span class="nv">$-</span> <span class="o">==</span> <span class="k">*</span>i<span class="k">*</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">echo</span> <span class="s2">"(</span><span class="si">$(</span><span class="nb">basename</span> <span class="nv">$VIRTUAL_ENV</span><span class="si">)</span><span class="s2">) "</span>
+        <span class="k">fi</span>
+    <span class="o">}</span>
+
+
+    ps1<span class="o">()</span> <span class="o">{</span>
+        <span class="c"># Check the exit code of the previous command and display different</span>
+        <span class="c"># colors in the prompt accordingly.</span>
+        <span class="k">if</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$?</span><span class="s2">"</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+            </span><span class="nb">local </span><span class="nv">BG_EXIT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BG_GREEN</span><span class="s2">"</span>
+            <span class="nb">local </span><span class="nv">FG_EXIT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$FG_GREEN</span><span class="s2">"</span>
+        <span class="k">else
+            </span><span class="nb">local </span><span class="nv">BG_EXIT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$BG_RED</span><span class="s2">"</span>
+            <span class="nb">local </span><span class="nv">FG_EXIT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$FG_RED</span><span class="s2">"</span>
+        <span class="k">fi
+
+
+        </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">"</span><span class="nv">$FG_COLOR5</span><span class="s2">"</span>
+        <span class="c"># PS1+="$BOLD_WHITE$BG_COLOR11 \$(virtual_env_name)`date +%r` "</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$BOLD_WHITE$BG_COLOR11</span><span class="s2"> </span><span class="se">\$</span><span class="s2">(virtual_env_name) </span><span class="se">\\</span><span class="s2">u@</span><span class="se">\\</span><span class="s2">h "</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$RESET</span><span class="k">${</span><span class="nv">FG_COLOR11</span><span class="k">}</span><span class="s2">"</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">BG_COLOR1</span><span class="k">}</span><span class="s2"></span><span class="nv">$RESET</span><span class="s2">"</span>
+
+        <span class="c"># Add the top-level directory of the Git repository</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$BG_COLOR1</span><span class="s2"> </span><span class="se">\$</span><span class="s2">(git_toplevel_dir) "</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$RESET</span><span class="k">${</span><span class="nv">FG_COLOR2</span><span class="k">}</span><span class="s2">"</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">BG_COLOR5</span><span class="k">}</span><span class="s2"></span><span class="nv">$RESET</span><span class="s2">"</span>
+
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$BG_COLOR5</span><span class="s2"> </span><span class="se">\\</span><span class="s2">W "</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$RESET</span><span class="k">${</span><span class="nv">FG_COLOR6</span><span class="k">}</span><span class="s2">"</span>
+
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="si">$(</span>__git_info<span class="si">)</span><span class="s2">"</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$BG_EXIT</span><span class="s2"></span><span class="nv">$RESET</span><span class="s2">"</span>
+        PS1+<span class="o">=</span><span class="s2">"</span><span class="nv">$BG_EXIT$FG_BASE3</span><span class="s2"> </span><span class="k">${</span><span class="nv">PS_SYMBOL</span><span class="k">}</span><span class="s2"> </span><span class="k">${</span><span class="nv">RESET</span><span class="k">}${</span><span class="nv">FG_EXIT</span><span class="k">}</span><span class="s2"></span><span class="k">${</span><span class="nv">RESET</span><span class="k">}</span><span class="s2"> "</span>
+    <span class="o">}</span>
+
+    <span class="nb">export </span><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">"myLocalHistory 2&gt; /dev/null; ps1"</span>
+<span class="o">}</span>
+<span class="c"># Skip if not interactive shell</span>
+<span class="o">[[</span> <span class="nv">$-</span> <span class="o">==</span> <span class="k">*</span>i<span class="k">*</span> <span class="o">]]</span> <span class="o">||</span> <span class="k">return
+</span>__powerline
+<span class="nb">unset </span>__powerline
+
+</code></pre></div></div> <hr> <h2 id="screenrc">.screenrc</h2> <p>GNU Screen configuration for managing multiple terminal sessions efficiently.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Turn the status line on</span>
+hardstatus on
+
+<span class="c"># Set the status line format (customize as needed)</span>
+hardstatus alwayslastline
+hardstatus string <span class="s2">"%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %Y-%m-%d %C%a "</span>
+
+termcapinfo xterm<span class="k">*</span> ti@:te@
+
+
+</code></pre></div></div> <hr> <h2 id="zsh_aliases">.zsh_aliases</h2> <p>Comprehensive collection of Zsh aliases to speed up common commands and operations.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#============================================================#</span>
+<span class="c">#               Part 3: Color and Alias Definitions          #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># Enable color support for 'ls' and add handy aliases</span>
+<span class="nb">alias dir</span><span class="o">=</span><span class="s1">'dir --color=auto'</span>
+<span class="nb">alias vdir</span><span class="o">=</span><span class="s1">'vdir --color=auto'</span>
+
+<span class="nb">alias grep</span><span class="o">=</span><span class="s1">'grep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">fgrep</span><span class="o">=</span><span class="s1">'fgrep --color=auto'</span>
+<span class="nb">alias </span><span class="nv">egrep</span><span class="o">=</span><span class="s1">'egrep --color=auto'</span>
+
+<span class="c"># Add an "alert" alias for long running commands. Use like so:</span>
+<span class="c">#   sleep 10; alert</span>
+<span class="nb">alias </span><span class="nv">alert</span><span class="o">=</span><span class="s1">'notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$(history|tail -n1 | sed -e '</span><span class="se">\'</span><span class="s1">'s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//'</span><span class="se">\'</span><span class="s1">')"'</span>
+
+<span class="c">#============================================================#</span>
+<span class="c">#               Part 6: Specialized Aliases and Functions         #</span>
+<span class="c">#------------------------------------------------------------#</span>
+
+<span class="c"># General Aliases</span>
+<span class="nb">alias rm</span><span class="o">=</span><span class="s1">'rm -i'</span>  <span class="c"># Prompt before deleting files</span>
+<span class="nb">alias </span><span class="nv">more</span><span class="o">=</span><span class="s1">'less'</span> <span class="c"># Use 'less' instead of 'more'</span>
+<span class="nb">alias </span><span class="nv">lsd</span><span class="o">=</span><span class="s1">'ls -d */'</span> <span class="c"># List only directories</span>
+
+<span class="c"># Activation of Virtual Environments</span>
+<span class="nb">alias </span><span class="nv">sb</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/sb_env/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">k2c</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/k2-cpu/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">k2g</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/k2-gpu/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">nemo</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/nemo/bin/activate'</span>
+<span class="nb">alias </span><span class="nv">esp</span><span class="o">=</span><span class="s1">'source /mnt/users/sagarst/envs/esp/bin/activate'</span>
+
+<span class="c"># Shortcut for editing bashrc</span>
+<span class="nb">alias </span><span class="nv">bashrc</span><span class="o">=</span><span class="s1">'vim ~/.bashrc'</span>
+
+<span class="c"># Alias for removing specific file types</span>
+<span class="nb">alias </span><span class="nv">rmr</span><span class="o">=</span><span class="s1">'rm -rf *.out *.err *.logs'</span>
+
+<span class="c"># Custom Command for Starting GPU</span>
+<span class="nb">alias </span><span class="nv">start_int_gpu</span><span class="o">=</span><span class="s1">'/home/sagar/bin/start_int_gpu.sh $1 $2 $3'</span>
+
+<span class="c"># VPN Connection Alias</span>
+<span class="nb">alias </span>eml-vpn<span class="o">=</span><span class="s1">'sudo openvpn --verb 3 --config /home/eml-speech/work/vpn/sangeet_sagar@vpn.eml.org.ovpn'</span>
+
+<span class="c"># GPU Management</span>
+<span class="nb">alias </span><span class="nv">gpu</span><span class="o">=</span><span class="s1">'export CUDA_VISIBLE_DEVICES=$(nvisel --max-count 1 --min-free-memory 5GiB --max-gpu-utilization 50)'</span>
+
+<span class="c"># Listing Aliases</span>
+<span class="nb">alias </span><span class="nv">lsr</span><span class="o">=</span><span class="s1">'eza --icons=always -R'</span>    <span class="c"># Recursive listing</span>
+<span class="nb">alias </span><span class="nv">ll</span><span class="o">=</span><span class="s1">'eza --icons=always --sort modified -l'</span>  <span class="c"># Detailed listing with human-readable sizes, sorted by modification time</span>
+<span class="nb">alias </span><span class="nv">lls</span><span class="o">=</span><span class="s1">'eza --icons=always -l'</span>  <span class="c"># Detailed listing with human-readable sizes, sorted by modification time</span>
+<span class="nb">alias </span><span class="nv">ltr</span><span class="o">=</span><span class="s1">'eza --icons=always  -ltr'</span>  <span class="c"># List sorted by modification time</span>
+
+<span class="c"># Conda environment listing</span>
+<span class="nb">alias </span><span class="nv">condalist</span><span class="o">=</span><span class="s2">"conda info -e"</span>
+
+<span class="c"># GPU job submission command</span>
+<span class="nb">alias </span><span class="nv">qgpu</span><span class="o">=</span><span class="s2">"srun --pty --mem=16gb -n 1 --gres=gpu:1 /bin/bash"</span>
+
+<span class="c"># Monitoring GPU</span>
+<span class="nb">alias </span><span class="nv">nsmi</span><span class="o">=</span><span class="s2">"nvitop"</span> <span class="c"># Advanced GPU monitoring</span>
+<span class="nb">alias </span><span class="nv">nvsmi</span><span class="o">=</span><span class="s2">"watch --color -n 1 nvidia-smi"</span> <span class="c"># Regular monitoring with auto-refresh</span>
+<span class="nb">alias </span><span class="nv">nsmil</span><span class="o">=</span><span class="s1">'nvidia-smi'</span> <span class="c"># Simple call to nvidia-smi</span>
+
+<span class="c"># SGE job queue status</span>
+<span class="nb">alias stat</span><span class="o">=</span><span class="s1">'squeue -u sagar -o "%.6i %9P %15j %.6u %.10T %.10M %.10l %.6D %10R %s %.10g"'</span>
+
+<span class="c"># TTS Command</span>
+<span class="nb">alias </span><span class="nv">rekni</span><span class="o">=</span><span class="s1">'espeak -v europe/cs -s 150'</span>
+
+
+</code></pre></div></div> <hr> <h2 id="vimrc">.vimrc</h2> <p>Vim editor configuration with custom key mappings, plugins, and settings for efficient text editing.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">set </span><span class="nv">pastetoggle</span><span class="o">=</span>&lt;F3&gt;
+<span class="nb">set </span>number
+<span class="nb">set </span>cursorline
+<span class="nb">set </span><span class="nv">backspace</span><span class="o">=</span>indent,eol,start
+
+
+</code></pre></div></div> <p>&lt;/details&gt;</p> <hr> <h2 id="-quick-setup">🚀 Quick Setup</h2> <p>To use these configurations:</p> <ol> <li> <strong>Backup your existing files</strong> (important!) <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nb">cp</span> ~/.bashrc ~/.bashrc.backup
+<span class="nb">cp</span> ~/.zshrc ~/.zshrc.backup
+<span class="c"># ... repeat for other files</span>
+</code></pre></div> </div> </li> <li> <p><strong>Copy the desired configurations</strong> to your home directory</p> </li> <li> <strong>Source the files</strong> or restart your terminal <div class="language-bash highlighter-rouge"> <div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ~/.bashrc
+<span class="nb">source</span> ~/.zshrc
+</code></pre></div> </div> </li> <li> <strong>Requirement</strong> <div class="language-plaintext highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>git-lfs
+zoxide
+eza
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+</code></pre></div> </div> </li> </ol> <h2 id="-notes">📝 Notes</h2> <ul> <li>These configurations are optimized for Linux/Unix environments</li> <li>Some functions may require additional tools or packages</li> <li>Feel free to modify according to your specific needs</li> <li>Regular updates and improvements are made to these files</li> </ul> <h2 id="-contributing">🤝 Contributing</h2> <p>Found a bug or have a suggestion? Feel free to reach out or submit improvements!</p> <hr> <p><em>Last updated: July 2025</em></p> </d-article> <d-appendix> <d-footnote-list></d-footnote-list> <d-citation-list></d-citation-list> </d-appendix> <d-bibliography src="/assets/bibliography/"></d-bibliography> </div> <footer class="fixed-bottom"> <div class="container mt-0"> © Copyright 2025 Sangeet Sagar. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script async src="https://www.googletagmanager.com/gtag/js?id="></script> <script>function gtag(){window.dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","");</script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> </body> </html>
